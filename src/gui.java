@@ -29,6 +29,9 @@ public class gui extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        SierpinskiTriangle testTriangle = new SierpinskiTriangle();
+
+
         window = primaryStage;
         window.setTitle("Space Filling Curves");
 
@@ -86,6 +89,9 @@ public class gui extends Application {
 
         window.setScene(scene);
         window.show();
+
+        testTriangle.paint(gc);
+
     }
 }
 

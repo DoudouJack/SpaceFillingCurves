@@ -1,12 +1,14 @@
+import javafx.scene.canvas.GraphicsContext;
+
 import java.awt.*;
 import java.applet.*;
 
 public class SierpinskiTriangle extends Applet {
-    private Graphics g;
+    private GraphicsContext c;
     private int dMin=8;    // limite à la récursion en pixels
 
-    public void paint(Graphics g) {
-        this.g = g;
+    public void paint(GraphicsContext c) {
+        this.c = c;
         int d  = 1024;    // base (largeur du triangle)
         int x0 =   50;    // distance de gauche
         int y0 =   50;    // distance du haut
@@ -30,8 +32,7 @@ public class SierpinskiTriangle extends Applet {
     }
 
     private void drawSierpinskiTriangle ( int[] x, int[] y, int d ) {
-        if (d<dMin) g.fillPolygon ( x, y, 3 );   // fond de la récursion
-        else {
+
             // milieus des cotés du triangle:
             int xMc = (x[0]+x[1])/2,    yMc = (y[0]+y[1])/2;
             int xMb = (x[0]+x[2])/2,    yMb = (y[0]+y[2])/2;
@@ -48,6 +49,6 @@ public class SierpinskiTriangle extends Applet {
             int[] xNouveau3 = { x[2], xMb, xMa };
             int[] yNouveau3 = { y[2], yMb, yMa };
             drawSierpinskiTriangle ( xNouveau3, yNouveau3, d/2 );    // récursion
-        }
+
     }
 }
