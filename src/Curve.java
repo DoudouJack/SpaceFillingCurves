@@ -1,4 +1,6 @@
 //This is a skeleton as the program is a work in progress. 
+import javafx.scene.paint.Color;
+
 import java.util.*;
 import java.io.*;
 
@@ -15,6 +17,31 @@ public class Curve{
     private int scale;
     private int iterations;
     private int curveType;
+    private Color convergenceColor = Color.WHITE;
+    private ColorSchema colorSchema = ColorSchema.GREEN;
+
+
+    public enum ColorSchema {
+
+        GREEN, RED, YELLOW, BLUE, CYAN, MAGENTA
+    }
+
+    public void setConvergenceColor(Color convergenceColor) {
+        this.convergenceColor = convergenceColor;
+    }
+
+    public Color getConvergenceColor() {
+        return convergenceColor;
+    }
+
+    public ColorSchema getColorSchema() {
+        return colorSchema;
+    }
+
+    public void setColorSchema(ColorSchema colorSchema) {
+        this.colorSchema = colorSchema;
+    }
+
 
     public Curve(int x, int y, float trans, int sca, int iter, int type){ //NOTE: Remember to re-add color handling. TODO: Determine how to implement type handling via subclasses.
         xPos = x;

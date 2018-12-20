@@ -1,4 +1,6 @@
 import javafx.application.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -17,6 +19,7 @@ public class gui extends Application {
     Stage window;
     BorderPane layout;
     Scene scene;
+    Curve curve;
 
 
     public static void main(String[] args) {
@@ -70,7 +73,7 @@ public class gui extends Application {
         slIterations.setMax(200);
 
 
-        final Canvas canvas = new Canvas(500,500);
+        final Canvas canvas = new Canvas(500, 500);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         canvasHolder.getChildren().add(canvas);
@@ -90,7 +93,26 @@ public class gui extends Application {
         window.setScene(scene);
         window.show();
 
-        testTriangle.paint(gc);
+
+
+
+
+
+/*        //for later: COLOR PICKER
+        private ColorPicker createConvergenceColorPicker() {
+            ColorPicker colorPicker = new ColorPicker(Color.WHITE);
+
+            colorPicker.valueProperty().addListener(new ChangeListener<Color>() {
+                @Override
+                public void changed(ObservableValue ov, Color oldColorSchema, Color newColorSchema) {
+                    curve.setConvergenceColor(newColorSchema);
+                    paintSet(canvas.getGraphicsContext2D(), curve);
+                }
+            });
+
+            return colorPicker;
+        }*/
+
 
     }
 }
