@@ -1,9 +1,10 @@
+import javafx.application.Application;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 import java.applet.*;
 
-public class SierpinskiTriangle extends Applet {
+public class SierpinskiTriangle {
     private GraphicsContext c;
     private int dMin=8;    // limite à la récursion en pixels
 
