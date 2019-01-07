@@ -6,8 +6,20 @@
     src: url('fonts/PT_Sans-Web-Bold.ttf');
 }
 
+* {
+    -fx-bg-1: #303030;
+    -fx-bg-2: #202020;
+    -fx-bg-3: #181818;
+    -fx-bg-4: #0a0a0a;
+    -fx-cold-800: #00897b;
+    -fx-cold-400: #26A69A;
+    -fx-cold-200: #80cbc4;
+    -fx-warm-800: #d84315;
+    -fx-warm-400: #FF7043;
+}
+
 .root{
-    -fx-background-color: #202020;
+    -fx-background-color: -fx-bg-2;
     -fx-font-family: "PT Sans";
 }
 
@@ -18,39 +30,40 @@
     -fx-font-size: 14;
 }
 
+/* style choice box */
 .choice-box{
-    -fx-background-color: #303030;
-    -fx-text-fill: #80cbc4;
+    -fx-background-color: -fx-bg-1;
+    -fx-text-fill: -fx-cold-200;
     -fx-background-radius: 0;
-    -fx-mark-color: #80cbc4;
+    -fx-mark-color: -fx-cold-200;
     -fx-pref-width: 195;
 }
 .choice-box *:focused{
-    -fx-mark-color: #303030;
+    -fx-mark-color: -fx-bg-1;
 }
 .choice-box .label{
-    -fx-text-fill: #80cbc4;
+    -fx-text-fill: -fx-cold-200;
 }
 .choice-box .context-menu{
-    -fx-background-color: #303030;
+    -fx-background-color: -fx-bg-1;
     -fx-padding: 0;
     -fx-pref-width: 195;
 }
 .choice-box .menu-item:focused{
-    -fx-background-color: #00897b;
+    -fx-background-color: -fx-cold-800;
 }
 .choice-box .menu-item > .label{
-    -fx-text-fill: #80cbc4;
+    -fx-text-fill: -fx-cold-200;
 }
 .choice-box .menu-item:focused > .label{
-    -fx-text-fill: #303030;
+    -fx-text-fill: -fx-bg-1;
 }
 .choice-box .menu-item:selected > .check{
-    -fx-fill: #303030;
+    -fx-fill: -fx-bg-1;
 }
 
-.menuLinkItem:hover {
-    -fx-background-color: #181818;
+.menuLinkItem:hover{
+    -fx-background-color: -fx-bg-3;
 }
 
 .menuLinkItem{
@@ -58,25 +71,55 @@
 }
 
 .bigButton{
-    -fx-border-color: #d84315;
+    -fx-border-color: -fx-warm-800;
     -fx-border-radius: 100%;
+    -fx-background-radius: 100;
     -fx-padding: 5 30;
 }
 
 .bigButton:hover{
-    -fx-border-color: #FF7043;
-    -fx-text-fill: #FF7043;
-    -fx-background-color: none;
+    -fx-border-color: -fx-warm-400;
+    -fx-text-fill: -fx-bg-2;
+    -fx-background-color: -fx-warm-400;
+}
+
+.hButton{
+    -fx-border-color: -fx-warm-800;
+    -fx-background-radius: 100;
+    -fx-border-radius: 100;
+    -fx-padding: 5 30;
+    -fx-text-fill: -fx-warm-800;
+}
+
+.hButton:hover{
+    -fx-background-color: -fx-warm-800;
+    -fx-text-fill: -fx-bg-2;
 }
 
 .label{
-    -fx-text-fill: #00897b;
+    -fx-text-fill: -fx-cold-800;
 }
 
-#menuLink{
+.greyLabel{
+    -fx-text-fill: #bababa;
+}
+
+.menuLink{
     -fx-alignment: CENTER;
-    -fx-graphic: url('icons/file.png');
     -fx-graphic-text-gap: 5;
+    -fx-padding: 0 10;
+}
+
+.menuLink:hover{
+    -fx-text-fill: -fx-warm-400;
+}
+
+#saveFile{
+    -fx-graphic: url('icons/file.png');
+}
+
+#clearAll{
+    -fx-graphic: url('icons/x.png');
 }
 
 #newEmpty{
@@ -94,37 +137,45 @@
     -fx-graphic-text-gap: 5;
 }
 
-
+/* style sliders */
 .slider .track{
-    -fx-background-color: #0a0a0a;
+    -fx-background-color: -fx-bg-4;
     -fx-padding: 0.15em;
 }
 
 .slider .label{
-    -fx-text-fill: #00695c;
+    -fx-text-fill: -fx-cold-800;
     -fx-font-size: 8;
 }
 
 .slider .thumb{
-    -fx-background-color: #00897b;
+    -fx-background-color: -fx-cold-800;
     -fx-font-size: 12;
 }
 
 .slider .thumb:hover {
-    -fx-background-color: #26A69A;
+    -fx-background-color: -fx-cold-400;
 }
 
 .slider .axis {
     -fx-tick-label-font: 0.7em "PT Sans";
-    -fx-tick-label-fill: #00695c;
+    -fx-tick-label-fill: -fx-cold-800;
 }
 
 .slider .axis .axis-tick-mark, .slider .axis .axis-minor-tick-mark {
     -fx-fill: null;
-    -fx-stroke: #00695c;
+    -fx-stroke: -fx-cold-800;
 }
 
 #colorSlider .axis .axis-tick-mark{
-    -fx-stroke: linear-gradient(to right, red, orange, yellow, greenyellow, green, turquoise, deepskyblue, blue, darkviolet, deeppink);
+    /* hex forms of hsb colors with hue steps of 40 */
+    -fx-stroke: linear-gradient(to right, #ff0000, #ffaa00, #aaff00, #00ff00, #00ffaa, #00aaff, #0000ff, #aa00ff, #ff00aa, #ff0004);
 }
+
+/* style tooltips */
+.tooltip{
+    -fx-text-fill: #bababa;
+    -fx-background-color: #2a2a2a;
+}
+
 
