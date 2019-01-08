@@ -6,18 +6,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.stage.*;
-import javafx.scene.paint.*;
-import javafx.scene.shape.*;
-import javafx.event.*;
 import java.lang.Math;
 
 
 public class gui extends Application {
-    private BorderPane layout;
     Curve curve;
 
     public enum CurveTypes {
@@ -28,7 +23,7 @@ public class gui extends Application {
 
         private final String curveName;
 
-        private CurveTypes(String curveName) {
+        CurveTypes(String curveName) {
             this.curveName = curveName;
         }
 
@@ -46,12 +41,10 @@ public class gui extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        //SierpinskiTriangle testTriangle = new SierpinskiTriangle();
-
         // S E T U P   W I N D O W + L A Y O U T
         BorderPane layout = new BorderPane();
         StackPane easel = new StackPane(); // This will hold the artwork group (of canvases)
-        Group artwork = new Group();        // This will hold the canvas(es) that make(s) up our artwork
+        //easel.setStyle("-fx-background-color: black");
         Stage window = new Stage();
         window = primaryStage;
         window.setTitle("Space Filling Curves");
@@ -138,14 +131,6 @@ public class gui extends Application {
         inputOpacity.setMinorTickCount(1);
         setOpacity.getChildren().addAll(labelOpacity, inputOpacity);
 
-        // Canvas(es)
-        final Canvas canvas1 = new Canvas(800, 800);
-        GraphicsContext gc1 = canvas1.getGraphicsContext2D();
-        artwork.getChildren().addAll(canvas1);
-        easel.getChildren().add(artwork);
-        easel.setStyle("-fx-background-color: black");
-
-
         // create tooltips
         Tooltip tooltipEmpt = new Tooltip("Create a new curve with default values.");
         btnNewEmpt.setTooltip(tooltipEmpt);
@@ -165,6 +150,10 @@ public class gui extends Application {
         controls.setPadding(new Insets( 40, 25, 40, 25));
         controls.getChildren().addAll(topBtns, setCurve, setScale, setIter, setColor, setVariance, setOpacity, bottomBtns);
 
+        // Canvas(es)
+        Artwork artwork = new Artwork();
+        easel.getChildren().add(artwork);
+
         layout.setRight(easel);
         layout.setLeft(controls);
 
@@ -181,15 +170,15 @@ public class gui extends Application {
                 Curve curve = getValues( inputCurve, inputScale, inputIter, inputColor,  cVariance, inputOpacity);
                 // call test methods:
                 curve.printValues();
-                curve.paintCanvas( canvas1 );
+                curve.testDrawing( artwork );
         });
 
         btnClear.setOnAction( e -> {
             boolean result = ConfirmationBox.display("Confirm", "Are you sure you want to delete your artwork?");
-            if(result) gc1.clearRect( 0, 0, canvas1.getWidth(), canvas1.getHeight() );
+            if(result){
+                artwork.clearAll();
+            }
         });
-
-
 
 
 

@@ -91,10 +91,10 @@ public class Curve{
         );
     }
     // This is for testing if input of color and opacity works, by drawing a rectangle in the middle of the canvas
-    public void paintCanvas( Canvas canvas ){
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+    public void testDrawing( Artwork artwork ){
+        GraphicsContext gc = artwork.getCurrentLayer();
         Color startCol = Color.hsb(colorHue,1.0,1.0, opacity/100);
         gc.setStroke(startCol);
-        gc.strokeRect(canvas.getWidth()/3, canvas.getHeight()/3, canvas.getWidth()/3, canvas.getHeight()/3);
+        gc.strokeRect(artwork.getWidth()/3, artwork.getHeight()/3, artwork.getWidth()/3, artwork.getHeight()/3);
     }
 }
