@@ -71,7 +71,6 @@ public class Artwork extends Group{
     }
 
     // other Methods
-
     public void setBackground( Color color ){
         this.bgColor = color;
         canvasList[0].getGraphicsContext2D().setFill( color );

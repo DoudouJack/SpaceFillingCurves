@@ -144,13 +144,12 @@ public class gui extends Application {
         btnClear.setTooltip(tooltipClear);
 
 
-        // F I L L   L A Y O U T
+        // C R E A T E  L A Y O U T
         VBox controls = new VBox(20);
         controls.setPrefWidth(250);
         controls.setPadding(new Insets( 40, 25, 40, 25));
         controls.getChildren().addAll(topBtns, setCurve, setScale, setIter, setColor, setVariance, setOpacity, bottomBtns);
 
-        // Canvas(es)
         Artwork artwork = new Artwork();
         easel.getChildren().add(artwork);
 

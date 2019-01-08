@@ -80,7 +80,6 @@ public class Curve{
     */
     public void draw() { //To be implemented within each subclass.
                          //TODO: Consider whether the Curve class should be abstract (in which case the readFromFile() method would need to be implemented elsewhere) or if an interface would be appropriate.
-
     }
 
     // This is for testing whether the GUI passes all the right values

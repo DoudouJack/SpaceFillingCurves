@@ -21,7 +21,6 @@ public class ConfirmationBox {
         Label alertMessage = new Label(message);
         alertMessage.getStyleClass().add("greyLabel");
 
-
         Button btnYes = new Button("Yes");
         Button btnNo = new Button("No");
         btnYes.getStyleClass().add("hButton");
