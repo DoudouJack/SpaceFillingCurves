@@ -16,6 +16,10 @@
     -fx-cold-200: #80cbc4;
     -fx-warm-800: #d84315;
     -fx-warm-400: #FF7043;
+
+    -fx-warning-1: #C2185B;
+    -fx-checked-1: #689F38;
+    -fx-neutral-light: #bababa;
 }
 
 .root{
@@ -28,6 +32,22 @@
     -fx-background-radius: 0;
     -fx-text-fill: #d84315;
     -fx-font-size: 14;
+}
+
+.text-field{
+    -fx-background-color: -fx-bg-4;
+    -fx-background-radius: 0;
+    -fx-text-fill: -fx-cold-400;
+}
+
+.text-field.fieldError{
+    -fx-border-color: -fx-warning-1;
+    -fx-text-fill: -fx-warning-1;
+}
+
+.text-field.fieldCorrected{
+    -fx-border-color: -fx-checked-1;
+    -fx-text-fill: -fx-checked-1;
 }
 
 /* style choice box */
@@ -101,7 +121,11 @@
 }
 
 .greyLabel{
-    -fx-text-fill: #bababa;
+    -fx-text-fill: -fx-neutral-light;
+}
+
+.warningLabel{
+    -fx-text-fill: -fx-warning-1;
 }
 
 .menuLink{
@@ -167,7 +191,7 @@
     -fx-stroke: -fx-cold-800;
 }
 
-#colorSlider .axis .axis-tick-mark{
+.colorSlider .axis .axis-tick-mark{
     /* hex forms of hsb colors with hue steps of 40 */
     -fx-stroke: linear-gradient(to right, #ff0000, #ffaa00, #aaff00, #00ff00, #00ffaa, #00aaff, #0000ff, #aa00ff, #ff00aa, #ff0004);
 }

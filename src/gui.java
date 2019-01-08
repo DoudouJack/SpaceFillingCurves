@@ -6,9 +6,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.stage.*;
+
+import java.awt.*;
 import java.lang.Math;
 
 
@@ -43,7 +47,6 @@ public class gui extends Application {
 
         // S E T U P   W I N D O W + L A Y O U T
         BorderPane layout = new BorderPane();
-        StackPane easel = new StackPane(); // This will hold the artwork group (of canvases)
         //easel.setStyle("-fx-background-color: black");
         Stage window = new Stage();
         window = primaryStage;
@@ -52,18 +55,18 @@ public class gui extends Application {
         // B U I L D   C O N T R O L S
         VBox topBtns = new VBox(0);
         topBtns.setPadding(new Insets( 0, 0, 0, -10));
-        Button btnNewEmpt = new Button("new empty");
-        Button btnNewRand = new Button("new random");
-        Button btnFromFile = new Button("new from file");
-        topBtns.getChildren().addAll(btnNewEmpt, btnNewRand, btnFromFile);
-        btnNewEmpt.getStyleClass().add("menuLinkItem");
-        btnNewRand.getStyleClass().add("menuLinkItem");
+        Button btnNewDefault = new Button("new default");
+        Button btnNewCustom = new Button("new custom");
+        Button btnFromFile = new Button("read in file");
+        topBtns.getChildren().addAll(btnNewDefault, btnNewCustom, btnFromFile);
+        btnNewDefault.getStyleClass().add("menuLinkItem");
+        btnNewCustom.getStyleClass().add("menuLinkItem");
         btnFromFile.getStyleClass().add("menuLinkItem");
-        btnNewEmpt.setMaxWidth(Double.MAX_VALUE);
-        btnNewRand.setMaxWidth(Double.MAX_VALUE);
+        btnNewDefault.setMaxWidth(Double.MAX_VALUE);
+        btnNewCustom.setMaxWidth(Double.MAX_VALUE);
         btnFromFile.setMaxWidth(Double.MAX_VALUE);
-        btnNewEmpt.setId("newEmpty");
-        btnNewRand.setId("newRand");
+        btnNewDefault.setId("newEmpty");
+        btnNewCustom.setId("newRand");
         btnFromFile.setId("fromFile");
 
         VBox bottomBtns = new VBox(10);
@@ -112,7 +115,7 @@ public class gui extends Application {
         inputColor.setMajorTickUnit(60);
         inputColor.setMinorTickCount(0);
         setColor.getChildren().addAll(labelColor, inputColor);
-        inputColor.setId("colorSlider");
+        inputColor.getStyleClass().add("colorSlider");
 
         // input color variance
         VBox setVariance = new VBox(10);
@@ -133,9 +136,9 @@ public class gui extends Application {
 
         // create tooltips
         Tooltip tooltipEmpt = new Tooltip("Create a new curve with default values.");
-        btnNewEmpt.setTooltip(tooltipEmpt);
+        btnNewDefault.setTooltip(tooltipEmpt);
         Tooltip tooltipRand = new Tooltip("Create a new curve with random values.");
-        btnNewRand.setTooltip(tooltipRand);
+        btnNewCustom.setTooltip(tooltipRand);
         Tooltip tooltipFile = new Tooltip("Create one or more curves from input file.");
         btnFromFile.setTooltip(tooltipFile);
         Tooltip tooltipSave = new Tooltip("Save your artwork to an image file.");
@@ -150,8 +153,10 @@ public class gui extends Application {
         controls.setPadding(new Insets( 40, 25, 40, 25));
         controls.getChildren().addAll(topBtns, setCurve, setScale, setIter, setColor, setVariance, setOpacity, bottomBtns);
 
-        Artwork artwork = new Artwork();
-        easel.getChildren().add(artwork);
+        Easel easel = new Easel(); // This will hold the artwork group (of canvases)
+        easel.setStyle("-fx-background-color: #111111");
+        easel.setMinWidth(800);
+        easel.setMinHeight(800);
 
         layout.setRight(easel);
         layout.setLeft(controls);
@@ -163,20 +168,30 @@ public class gui extends Application {
         window.show();
 
 
-
         // G U I   F U N C T I O N S
         btnStart.setOnAction( e -> {
                 Curve curve = getValues( inputCurve, inputScale, inputIter, inputColor,  cVariance, inputOpacity);
                 // call test methods:
                 curve.printValues();
-                curve.testDrawing( artwork );
+                curve.testDrawing( easel.getArtwork() );
         });
 
         btnClear.setOnAction( e -> {
             boolean result = ConfirmationBox.display("Confirm", "Are you sure you want to delete your artwork?");
             if(result){
-                artwork.clearAll();
+                easel.getArtwork().clearAll();
             }
+        });
+
+        btnNewDefault.setOnAction( e -> {
+            boolean result = ConfirmationBox.display("Confirm", "Discard all changes made to the current artwork?");
+            if(result){
+                easel.resetArtwork();
+            }
+        });
+
+        btnNewCustom.setOnAction( e -> {
+            PopUpNew.open(easel);
         });
 
 

@@ -12,6 +12,19 @@ public class Artwork extends Group{
     private Color bgColor;
 
         // constructors
+    public Artwork( int width, int height, Color bgColor) {
+        this.numberOfCanvases = 1;
+        this.width = width;
+        this.height = height;
+        this.canvasList = new Canvas[numberOfCanvases];
+        this.bgColor = bgColor;
+
+        // create background:
+        canvasList[0] = new Canvas(width, height);
+        this.getChildren().add( canvasList[0] );
+        setBackground( bgColor );
+    }
+
     public Artwork(int numberOfCanvases, int width, int height, Color bgColor) {
         this.numberOfCanvases = numberOfCanvases;
         this.width = width;
@@ -23,12 +36,6 @@ public class Artwork extends Group{
         canvasList[0] = new Canvas(width, height);
         this.getChildren().add( canvasList[0] );
         setBackground( bgColor );
-
-        // create layers:
-        for(int i = 1; i <= numberOfCanvases; i++){
-            canvasList[i] = new Canvas(width, height);
-            this.getChildren().addAll( canvasList[i] );
-        }
     }
 
     public Artwork() {
@@ -43,6 +50,10 @@ public class Artwork extends Group{
         canvasList[1] = new Canvas(width, height);
         this.getChildren().addAll(canvasList[0], canvasList[1] );
         setBackground( bgColor );
+    }
+
+    public Artwork( Artwork template ){
+
     }
 
     // getters and setters
@@ -78,7 +89,7 @@ public class Artwork extends Group{
     }
 
     public GraphicsContext getCurrentLayer(){
-        return canvasList[1].getGraphicsContext2D();
+        return canvasList[0].getGraphicsContext2D();
     }
 
     public void clearAll(){
