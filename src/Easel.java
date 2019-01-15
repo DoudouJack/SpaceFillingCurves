@@ -33,6 +33,13 @@ public class Easel extends StackPane {
         this.artwork = newArtwork;
     }
 
+    public void resetArtwork( Artwork oldArtwork ){
+        this.getChildren().remove(artwork);
+        Artwork newArtwork = new Artwork( oldArtwork.getWidth(), oldArtwork.getHeight(), oldArtwork.getBgColor() );
+        this.getChildren().add( newArtwork );
+        this.artwork = newArtwork;
+    }
+
     public Artwork getArtwork() {
         return artwork;
     }

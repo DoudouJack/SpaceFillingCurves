@@ -93,13 +93,13 @@ public class gui extends Application {
 
         // input Scale
         VBox setScale = new VBox(10);
-        Label labelScale = new Label("Scale");
+        Label labelScale = new Label("scale");
         Slider inputScale = new Slider(1, 100, 50);
         setScale.getChildren().addAll(labelScale, inputScale);
 
         // input iterations
         VBox setIter = new VBox(10);
-        Label labelIter = new Label("Iterations");
+        Label labelIter = new Label("iterations");
         Slider inputIter = new Slider(1, 100, 50);
         inputIter.setShowTickLabels(true);
         inputIter.setShowTickMarks(true);
@@ -109,7 +109,7 @@ public class gui extends Application {
 
         // input color
         VBox setColor = new VBox(10);
-        Label labelColor = new Label("Color");
+        Label labelColor = new Label("color");
         Slider inputColor = new Slider(0, 359, 0);
         inputColor.setShowTickMarks(true);
         inputColor.setMajorTickUnit(60);
@@ -119,14 +119,14 @@ public class gui extends Application {
 
         // input color variance
         VBox setVariance = new VBox(10);
-        Label labelVariance = new Label("Color variance");
+        Label labelVariance = new Label("color variance");
         Slider cVariance = new Slider(0, 40, 0);
         cVariance.setMajorTickUnit(5);
         setVariance.getChildren().addAll(labelVariance, cVariance);
 
         // input opacity
         VBox setOpacity = new VBox(10);
-        Label labelOpacity = new Label("Opacity");
+        Label labelOpacity = new Label("opacity");
         Slider inputOpacity = new Slider(1, 100, 50);
         inputOpacity.setShowTickLabels(true);
         inputOpacity.setShowTickMarks(true);
@@ -179,7 +179,7 @@ public class gui extends Application {
         btnClear.setOnAction( e -> {
             boolean result = ConfirmationBox.display("Confirm", "Are you sure you want to delete your artwork?");
             if(result){
-                easel.getArtwork().clearAll();
+                easel.resetArtwork( easel.getArtwork() );
             }
         });
 

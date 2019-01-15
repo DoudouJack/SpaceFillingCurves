@@ -7,8 +7,8 @@ import javafx.scene.paint.Color;
 public class Artwork extends Group{
     private int numberOfCanvases;
     private Canvas[] canvasList;
-    private double width;
-    private double height;
+    private int width;
+    private int height;
     private Color bgColor;
 
         // constructors
@@ -65,7 +65,7 @@ public class Artwork extends Group{
         this.numberOfCanvases = numberOfCanvases;
     }
 
-    public double getWidth() {
+    public int getWidth() {
         return width;
     }
 
@@ -73,12 +73,16 @@ public class Artwork extends Group{
         this.width = width;
     }
 
-    public double getHeight() {
+    public int getHeight() {
         return height;
     }
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public Color getBgColor(){
+        return bgColor;
     }
 
     // other Methods
@@ -94,9 +98,9 @@ public class Artwork extends Group{
 
     public void clearAll(){
         for(int i = 1; i <= this.numberOfCanvases; i++){
-            canvasList[i].getGraphicsContext2D().clearRect(0, 0, this.width, this.height);
-            canvasList[i] = null;
-            this.getChildren().remove(canvasList[i]);
+            //canvasList[i].getGraphicsContext2D().clearRect(0, 0, this.width, this.height);
+            //canvasList[i] = null;
+            //this.getChildren().remove(canvasList[i]);
         }
 
         canvasList[0] = new Canvas(width, height);
