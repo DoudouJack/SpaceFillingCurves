@@ -135,10 +135,10 @@ public class gui extends Application {
         setOpacity.getChildren().addAll(labelOpacity, inputOpacity);
 
         // create tooltips
-        Tooltip tooltipEmpt = new Tooltip("Create a new curve with default values.");
-        btnNewDefault.setTooltip(tooltipEmpt);
-        Tooltip tooltipRand = new Tooltip("Create a new curve with random values.");
-        btnNewCustom.setTooltip(tooltipRand);
+        Tooltip tooltipDefault = new Tooltip("Create a new artwork with default values.");
+        btnNewDefault.setTooltip(tooltipDefault);
+        Tooltip tooltipCustom = new Tooltip("Create a new artwork with custom size and background.");
+        btnNewCustom.setTooltip(tooltipCustom);
         Tooltip tooltipFile = new Tooltip("Create one or more curves from input file.");
         btnFromFile.setTooltip(tooltipFile);
         Tooltip tooltipSave = new Tooltip("Save your artwork to an image file.");
@@ -165,6 +165,7 @@ public class gui extends Application {
         scene.getStylesheets().add("resources/Style.css");
 
         window.setScene(scene);
+        window = primaryStage;
         window.show();
 
 

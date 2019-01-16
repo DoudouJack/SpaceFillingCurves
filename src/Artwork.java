@@ -96,7 +96,8 @@ public class Artwork extends Group{
         return canvasList[0].getGraphicsContext2D();
     }
 
-    public void clearAll(){
+    // can be deleted...
+   /* public void clearAll(){
         for(int i = 1; i <= this.numberOfCanvases; i++){
             //canvasList[i].getGraphicsContext2D().clearRect(0, 0, this.width, this.height);
             //canvasList[i] = null;
@@ -107,5 +108,5 @@ public class Artwork extends Group{
         canvasList[1] = new Canvas(width, height);
         this.getChildren().addAll(canvasList[0], canvasList[1] );
         setBackground( bgColor );
-    }
+    }*/
 }
