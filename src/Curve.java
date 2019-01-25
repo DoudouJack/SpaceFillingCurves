@@ -2,9 +2,6 @@
 import javafx.scene.paint.Color;
 import javafx.scene.canvas.*;
 
-import java.util.*;
-import java.io.*;
-
 /* 
 	This class is untested. Tests will commence elsewhen. Refer to commentary for information on accounted for issues.
 */
@@ -15,8 +12,8 @@ public class Curve{
 
     /* private float color;
         TODO: Determine handling of color with the group. */
-    private int xPos;
-    private int yPos;
+    private double xPos; //Edited positions so they're double.
+    private double yPos;
     private int scale;
     private int iterations;
     private int curveType;
@@ -50,7 +47,7 @@ public class Curve{
     }
 */
 
-    public Curve(int x, int y, int type, int sca, int iter, double colHue, int cVar, double opac){ //NOTE: Remember to re-add color handling. TODO: Determine how to implement type handling via subclasses.
+    Curve(double x, double y, int type, int sca, int iter, double colHue, int cVar, double opac){ //NOTE: Remember to re-add color handling. TODO: Determine how to implement type handling via subclasses.
         xPos = x;
         yPos = y;
         curveType = type;
@@ -82,18 +79,31 @@ public class Curve{
                          //TODO: Consider whether the Curve class should be abstract (in which case the readFromFile() method would need to be implemented elsewhere) or if an interface would be appropriate.
     }
 
+    //Moved test function into Curve function for testing
+    private void drawBranch(GraphicsContext gc, int iterations, double startX, double startY, double scale, double hue){
+        if(iterations==0) return;
+        Color startCol = Color.hsb(colorHue,1.0,1.0, opacity/100);
+        gc.setStroke( startCol );
+
+        gc.strokeLine(startX, startY, startX+scale, startY-scale-iterations/2);
+        gc.strokeLine(startX, startY, startX-scale, startY-scale-iterations/2);
+
+        drawBranch(gc, iterations-1, startX+scale, startY-scale-iterations/2, scale/0.8, hue+cVariance);
+    }
+
     // This is for testing whether the GUI passes all the right values
-    public void printValues(){
+    void printValues(){
         System.out.printf(
-                "xPos: %d \nxPos: %d \nType: %d \nScale: %d \nIterations: %d \nColorHue: %f \nColor Variance: %d \nOpacity: %f \n"
+                "xPos: %f \nxPos: %f \nType: %d \nScale: %d \nIterations: %d \nColorHue: %f \nColor Variance: %d \nOpacity: %f \n"
                 , xPos, yPos, curveType, scale, iterations, colorHue, cVariance, opacity
         );
     }
-    // This is for testing if input of color and opacity works, by drawing a rectangle in the middle of the canvas
-    public void testDrawing( Artwork artwork ){
+// Testing the usage of a branch.
+    void testDrawing(Artwork artwork){
         GraphicsContext gc = artwork.getCurrentLayer();
-        Color startCol = Color.hsb(colorHue,1.0,1.0, opacity/100);
-        gc.setStroke(startCol);
-        gc.strokeRect(artwork.getWidth()/3, artwork.getHeight()/3, artwork.getWidth()/3, artwork.getHeight()/3);
+        xPos = 120.0;
+        yPos = 800.0;
+        gc.setLineWidth(3);
+        drawBranch(gc, iterations, xPos, yPos, scale, colorHue);
     }
 }
