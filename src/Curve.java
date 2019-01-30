@@ -101,9 +101,11 @@ public class Curve{
 // Testing the usage of a branch.
     void testDrawing(Artwork artwork){
         GraphicsContext gc = artwork.getCurrentLayer();
-        xPos = 120.0;
-        yPos = 800.0;
+        xPos = 20.0;
+        yPos = 600.0;
         gc.setLineWidth(3);
-        drawBranch(gc, iterations, xPos, yPos, scale, colorHue);
+        //drawBranch(gc, iterations, xPos, yPos, scale, colorHue);
+        CantorSet a = new CantorSet();
+        a.cantor(gc, xPos, yPos, iterations, colorHue, scale);
     }
 }
