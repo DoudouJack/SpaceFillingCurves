@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.stage.*;
 
 import java.awt.*;
+import java.io.File;
 import java.lang.Math;
 
 
@@ -193,6 +194,18 @@ public class gui extends Application {
 
         btnNewCustom.setOnAction( e -> {
             PopUpNew.open(easel);
+        });
+
+        btnFromFile.setOnAction( e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Resource File");
+
+            File file = fileChooser.showOpenDialog(primaryStage);
+            if (file != null) {
+                // TODO: put execution code here
+                // read in file, draw curve...
+                System.out.println( "File: " + file.getName() );
+            }
         });
 
 
