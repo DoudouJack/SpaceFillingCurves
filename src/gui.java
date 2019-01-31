@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.stage.*;
+import javafx.scene.shape.Polygon;
 
 import java.awt.*;
 import java.lang.Math;
@@ -174,7 +175,15 @@ public class gui extends Application {
                 Curve curve = getValues( inputCurve, inputScale, inputIter, inputColor,  cVariance, inputOpacity);
                 // call test methods:
                 curve.printValues();
-                curve.testDrawing( easel.getArtwork() );
+                //curve.testDrawing( easel.getArtwork() );
+            //Polygon triangle = new Polygon();
+            //triangle.getPoints().addAll(50.0, 0.0,  0.0, 50.0,100.0, 50.0);
+            //triangle.setFill(Color.WHITE);
+            //triangle.setStroke( strColor );
+            //curve.test2Drawing(easel.getArtwork());
+            curve.mainDraw(easel.getArtwork());
+
+
         });
 
         btnClear.setOnAction( e -> {

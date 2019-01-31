@@ -1,6 +1,7 @@
 //This is a skeleton as the program is a work in progress. 
 import javafx.scene.paint.Color;
 import javafx.scene.canvas.*;
+import javafx.scene.shape.Polygon;
 
 /* 
 	This class is untested. Tests will commence elsewhen. Refer to commentary for information on accounted for issues.
@@ -47,7 +48,12 @@ public class Curve{
     }
 */
 
-    Curve(double x, double y, int type, int sca, int iter, double colHue, int cVar, double opac){ //NOTE: Remember to re-add color handling. TODO: Determine how to implement type handling via subclasses.
+
+// write a function that triggers the drawfunction depending on curveType (int)
+    // depending on the choice, create new object from selected type
+    // then draw
+
+    public Curve(double x, double y, int type, int sca, int iter, double colHue, int cVar, double opac){ //NOTE: Remember to re-add color handling. TODO: Determine how to implement type handling via subclasses.
         xPos = x;
         yPos = y;
         curveType = type;
@@ -99,6 +105,7 @@ public class Curve{
         );
     }
 // Testing the usage of a branch.
+/*
     void testDrawing(Artwork artwork){
         GraphicsContext gc = artwork.getCurrentLayer();
         xPos = 20.0;
@@ -107,5 +114,31 @@ public class Curve{
         //drawBranch(gc, iterations, xPos, yPos, scale, colorHue);
         CantorSet a = new CantorSet();
         a.cantor(gc, xPos, yPos, iterations, colorHue, scale);
+    }
+*/
+
+    /*
+    void test2Drawing(Artwork artwork){
+
+        GraphicsContext gc = artwork.getCurrentLayer();
+        xPos = 600.0;
+        yPos = 600.0;
+        SierpinskiTriangle triangle = new SierpinskiTriangle();
+        triangle.drawTriangle(gc, xPos, yPos, iterations, colorHue, scale);
+    }
+    */
+
+    void mainDraw(Artwork artwork){
+        GraphicsContext gc = artwork.getCurrentLayer();
+        xPos = 600.0;
+        yPos = 600.0;
+        if (curveType == 0){
+            SierpinskiTriangle triangle = new SierpinskiTriangle();
+            triangle.drawTriangle(gc, xPos, yPos, iterations, colorHue, scale);
+
+        } else if (curveType == 3){
+            CantorSet a = new CantorSet();
+            a.cantor(gc, xPos, yPos, iterations, colorHue, scale);
+        }
     }
 }
