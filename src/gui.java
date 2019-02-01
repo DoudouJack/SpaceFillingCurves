@@ -95,13 +95,15 @@ public class gui extends Application {
         // input Scale
         VBox setScale = new VBox(10);
         Label labelScale = new Label("scale");
-        Slider inputScale = new Slider(1, 100, 50);
+        Slider inputScale = new Slider(0.0, 10.0, 1.0);
         setScale.getChildren().addAll(labelScale, inputScale);
+        inputScale.setBlockIncrement(0.2f);
+        inputScale.setMajorTickUnit(0.2f);
 
         // input iterations
         VBox setIter = new VBox(10);
         Label labelIter = new Label("iterations");
-        Slider inputIter = new Slider(1, 100, 50);
+        Slider inputIter = new Slider(1, 20, 1);
         inputIter.setShowTickLabels(true);
         inputIter.setShowTickMarks(true);
         inputIter.setMajorTickUnit(200);
@@ -181,6 +183,7 @@ public class gui extends Application {
             //triangle.setFill(Color.WHITE);
             //triangle.setStroke( strColor );
             //curve.test2Drawing(easel.getArtwork());
+
             curve.mainDraw(easel.getArtwork());
 
 

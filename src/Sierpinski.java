@@ -2,16 +2,15 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 import javafx.geometry.Point2D;
+import javafx.scene.transform.Scale;
 
 public class Sierpinski {
 
     GraphicsContext gc;
     double x1, y1, x2, y2, x3, y3;
-    double[] xcoord = new double[]{x1,x2,x3};
-    double[] ycoord = new double[]{y1,y2,y3};
-    Point2D A;
+/*    Point2D A;
     Point2D B;
-    Point2D C;
+    Point2D C;*/
     double spacing, a;
 
     void drawTriangle(GraphicsContext gc, Artwork artwork, double x, double y, int i, double hue, double scale) {
@@ -23,8 +22,6 @@ public class Sierpinski {
         gc.setFill(strColor);
         //gc.fillPolygon(new double[]{5,10,0}, new double[]{8.66,0,0}, 3);
 
-        int width = artwork.getWidth();
-        System.out.println(width);
 
         double squareSize = Math.min(artwork.getWidth(), artwork.getHeight());
 
@@ -32,27 +29,40 @@ public class Sierpinski {
 
 
 
-        x1 = artwork.getWidth() / 2 - squareSize / 2 + spacing;
-        y1 = artwork.getHeight() / 2 + squareSize / 2 - spacing * 2;
-        x2 = artwork.getWidth() / 2 + squareSize / 2 - spacing;
+        x1 = (artwork.getWidth() / 2 - squareSize / 2 + spacing);
+        y1 = (artwork.getHeight() / 2 + squareSize / 2 - spacing * 2);
+        x2 = (artwork.getWidth() / 2 + squareSize / 2 - spacing);
         a = x2 - x1;
         y2 = y1;
         x3 = x1 + a / 2;
         y3 = y1 - (Math.sqrt(Math.pow(a, 2) - Math.pow(a / 2, 2)));
 
-        Point2D A = new Point2D(x1,y1);
-        Point2D B = new Point2D(x2,y2);
-        Point2D C = new Point2D(x3,y3);
+        double transformation = scale*0.025;
 
-        if (i == 1){
+/*        Point2D A = new Point2D(x1, y1);
+        Point2D B = new Point2D(x2, y2);
+        Point2D C = new Point2D(x3, y3);*/
 
-            gc.strokeLine(A.getX(), A.getY(), B.getX(), B.getY());
-            gc.strokeLine(A.getX(), A.getY(), C.getX(), C.getY());
-            gc.strokeLine(B.getX(), B.getY(), C.getX(), C.getY());
+            Point2D A = new Point2D(x1 * scale-(scale-1)*400, y1 * scale-(scale-1)*400);
+            Point2D B = new Point2D(x2 * scale-(scale-1)*400, y2 * scale-(scale-1)*400);
+            Point2D C = new Point2D(x3 * scale-(scale-1)*400, y3 * scale-(scale-1)*400);
 
-        } else {
-            displayTriangles(i, A, B, C);
-        }
+            if (i == 1){
+
+                gc.strokeLine(A.getX(), A.getY(), B.getX(), B.getY());
+                gc.strokeLine(A.getX(), A.getY(), C.getX(), C.getY());
+                gc.strokeLine(B.getX(), B.getY(), C.getX(), C.getY());
+
+            } else {
+                displayTriangles(i, A, B, C);
+            }
+
+
+
+
+
+
+
 
 
 

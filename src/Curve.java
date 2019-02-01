@@ -14,7 +14,7 @@ public class Curve{
         TODO: Determine handling of color with the group. */
     private double xPos; //Edited positions so they're double.
     private double yPos;
-    private int scale;
+    private double scale;
     private int iterations;
     private int curveType;
     private double colorHue;
@@ -53,7 +53,7 @@ public class Curve{
     // depending on the choice, create new object from selected type
     // then draw
 
-    public Curve(double x, double y, int type, int sca, int iter, double colHue, int cVar, double opac){ //NOTE: Remember to re-add color handling. TODO: Determine how to implement type handling via subclasses.
+    public Curve(double x, double y, int type, double sca, int iter, double colHue, int cVar, double opac){ //NOTE: Remember to re-add color handling. TODO: Determine how to implement type handling via subclasses.
         xPos = x;
         yPos = y;
         curveType = type;
@@ -100,7 +100,7 @@ public class Curve{
     // This is for testing whether the GUI passes all the right values
     void printValues(){
         System.out.printf(
-                "xPos: %f \nxPos: %f \nType: %d \nScale: %d \nIterations: %d \nColorHue: %f \nColor Variance: %d \nOpacity: %f \n"
+                "xPos: %f \nxPos: %f \nType: %d \nScale: %f \nIterations: %d \nColorHue: %f \nColor Variance: %d \nOpacity: %f \n"
                 , xPos, yPos, curveType, scale, iterations, colorHue, cVariance, opacity
         );
     }
@@ -137,8 +137,10 @@ public class Curve{
             triangle.drawTriangle(gc, artwork, xPos, yPos, iterations, colorHue, scale);
 
         } else if (curveType == 3){
-            CantorSet a = new CantorSet();
-            a.cantor(gc, xPos, yPos, iterations, colorHue, scale);
+            Cantor cantor = new Cantor();
+            cantor.drawCantor(gc, artwork, xPos, yPos, iterations, colorHue, scale);
+            /*CantorSet a = new CantorSet();
+            a.cantor(gc, xPos, yPos, iterations, colorHue, scale);*/
         }
     }
 }
