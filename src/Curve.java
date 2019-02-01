@@ -1,7 +1,6 @@
 //This is a skeleton as the program is a work in progress. 
 import javafx.scene.paint.Color;
 import javafx.scene.canvas.*;
-import javafx.scene.shape.Polygon;
 
 /* 
 	This class is untested. Tests will commence elsewhen. Refer to commentary for information on accounted for issues.
@@ -21,6 +20,7 @@ public class Curve{
     private double colorHue;
     private int cVariance;
     private double opacity;
+    private Artwork artwork;
 //    private Color convergenceColor = Color.WHITE;
 //    private ColorSchema colorSchema = ColorSchema.GREEN;
 
@@ -123,7 +123,7 @@ public class Curve{
         GraphicsContext gc = artwork.getCurrentLayer();
         xPos = 600.0;
         yPos = 600.0;
-        SierpinskiTriangle triangle = new SierpinskiTriangle();
+        SierpinskiTriangleOLD triangle = new SierpinskiTriangleOLD();
         triangle.drawTriangle(gc, xPos, yPos, iterations, colorHue, scale);
     }
     */
@@ -133,8 +133,8 @@ public class Curve{
         xPos = 600.0;
         yPos = 600.0;
         if (curveType == 0){
-            SierpinskiTriangle triangle = new SierpinskiTriangle();
-            triangle.drawTriangle(gc, xPos, yPos, iterations, colorHue, scale);
+            Sierpinski triangle = new Sierpinski();
+            triangle.drawTriangle(gc, artwork, xPos, yPos, iterations, colorHue, scale);
 
         } else if (curveType == 3){
             CantorSet a = new CantorSet();
