@@ -124,14 +124,14 @@ public class gui extends Application {
         // input color variance
         VBox setVariance = new VBox(10);
         Label labelVariance = new Label("color variance");
-        Slider cVariance = new Slider(0, 40, 0);
+        Slider cVariance = new Slider(0, 1, 0);
         cVariance.setMajorTickUnit(5);
         setVariance.getChildren().addAll(labelVariance, cVariance);
 
         // input opacity
         VBox setOpacity = new VBox(10);
         Label labelOpacity = new Label("opacity");
-        Slider inputOpacity = new Slider(1, 100, 50);
+        Slider inputOpacity = new Slider(1, 100, 100);
         inputOpacity.setShowTickLabels(true);
         inputOpacity.setShowTickMarks(true);
         inputOpacity.setMajorTickUnit(100);

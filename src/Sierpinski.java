@@ -17,7 +17,7 @@ public class Sierpinski {
     //TODO: Variance and scale.
 
 
-    void drawTriangle(GraphicsContext gc, Artwork artwork, double x, double y, int i, double hue, double scale, double opacity) {
+    void drawTriangle(GraphicsContext gc, Artwork artwork, int i, double hue, double scale, double opacity) {
         this.gc = gc;
 
         Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
@@ -60,15 +60,6 @@ public class Sierpinski {
             } else {
                 displayTriangles(i, A, B, C);
             }
-
-
-
-
-
-
-
-
-
 
     }
 

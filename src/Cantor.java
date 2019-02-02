@@ -3,26 +3,29 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Cantor {
+
+
+
     GraphicsContext gc;
-    double x1, x2;
-    double y = 1.00;
-    float lineSpacing = -30; //spacing between vertical lines
+    double x1, x2, y;
+    double lineSpacing = 20; //spacing between vertical lines
 
 
 
-    void drawCantor(GraphicsContext gc, Artwork artwork, double x, double y, int i, double hue, double scale){
+    void drawCantor(GraphicsContext gc, Artwork artwork, int i, double hue, double opacity, double scale){
         this.gc = gc;
-        Color strColor = Color.hsb(170, 1.0, 1.0);
-        gc.setStroke(strColor);
-        gc.setLineWidth(2);
-        gc.setFill(strColor);
+
+        Color startCol = Color.hsb(hue,1.0,1.0, opacity/100);
+        gc.setLineWidth(10*scale);
+        gc.setStroke( startCol );
+
+        lineSpacing = lineSpacing*scale;
 
         double squareSize = Math.min(artwork.getWidth(), artwork.getHeight());
 
-        this.x1 = artwork.getWidth()/2 - squareSize/2 + squareSize*0.1;
-        this.x2 = artwork.getWidth()/2 + squareSize/2 - squareSize*0.1;
-        //this.y = -500;
-
+        this.x1 = (artwork.getWidth()/2 - squareSize/2 + squareSize*0.1) * scale;
+        this.x2 = (artwork.getWidth()/2 + squareSize/2 - squareSize*0.1) * scale;
+        this.y = squareSize/3;
 
         if (i == 1) {
             gc.strokeLine(x1, y, x2, y);
@@ -37,13 +40,13 @@ public class Cantor {
             y += lineSpacing;
             double newLineLength = (x2 - x1)/3;
 
-/*            //draw left line
+           //draw left line
             gc.strokeLine(x1,y,x1+newLineLength,y);
 
             //draw right line
-            gc.strokeLine(x2-newLineLength,y,x2,y);*/
+            gc.strokeLine(x2-newLineLength,y,x2,y);
 
-            if (iter > 1){
+            if (iter > 0){
                 displayCantors(iter-1, x1, x1+newLineLength, y);
                 displayCantors(iter-1, x2-newLineLength, x2, y);
             }

@@ -115,6 +115,9 @@ public class Curve {
     }
     */
 
+
+    // BITTE KEINE XPOS UND YPOS BENUTZEN DA DIE FUNKTIONEN DRAW SELBER CHECKEN, DASS DAS OBJEKT IN DER MITTE
+    // SO GROSS WIE MOGLICH GEZEICHNET WIRD!
     void mainDraw(Artwork artwork) {
         //Some curves do not display properly if you give everything the same coordinates, therefore each if-statement needs its own coordinates.
         GraphicsContext gc = artwork.getCurrentLayer();
@@ -122,17 +125,23 @@ public class Curve {
             xPos = 600.0;
             yPos = 600.0;
             Sierpinski triangle = new Sierpinski();
-            triangle.drawTriangle(gc, artwork, xPos, yPos, iterations, colorHue, scale, opacity);
+            triangle.drawTriangle(gc, artwork, iterations, colorHue, scale, opacity);
 
         } else if (curveType == 3) {
-            CantorSet a = new CantorSet();
-            a.cantor(gc, xPos, yPos, iterations * 40, colorHue, scale, opacity, cVariance);
+            //CantorSet a = new CantorSet();
+            //a.cantor(gc, xPos, yPos, iterations * 40, colorHue, scale, opacity, cVariance);
+            //BITTE DIE NEUE KLASSE CANTOR BENUTZEN!!
+            Cantor cantor = new Cantor();
+            cantor.drawCantor(gc, artwork, iterations, colorHue, opacity, scale);
 
         } else if (curveType == 2) {
             xPos = 120.0;
             yPos = 800.0;
-            Tree a = new Tree();
-            a.drawBranch(gc, iterations, xPos, yPos, scale, colorHue, opacity, cVariance);
+            //Tree tree = new Tree();
+            //tree.drawBranch(gc, iterations, xPos, yPos, scale, colorHue, opacity, cVariance);
+            //tree.drawTree(gc, artwork, iterations, colorHue, scale, opacity);
+            Tree tree = new Tree();
+            tree.drawTree(gc, artwork, iterations, colorHue,scale, opacity, cVariance);
         }
     }
 }
