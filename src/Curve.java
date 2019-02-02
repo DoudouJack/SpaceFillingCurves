@@ -156,6 +156,9 @@ public class Curve {
             yPos = 800.0;
             Circles circle = new Circles();
             circle.drawCircle(gc, artwork, iterations, colorHue,scale, opacity, cVariance);
+        } else if (curveType == 5){
+            Koch koch = new Koch();
+            koch.drawKoch(gc,artwork,iterations,colorHue, scale, opacity, cVariance);
         }
 
     }
