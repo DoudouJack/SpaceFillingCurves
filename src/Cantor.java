@@ -12,7 +12,7 @@ public class Cantor {
 
 
 
-    void drawCantor(GraphicsContext gc, Artwork artwork, int i, double hue, double opacity, double scale){
+    void drawCantor(GraphicsContext gc, Artwork artwork, int i, double hue, double opacity, double scale, double variance){
         this.gc = gc;
 
         Color startCol = Color.hsb(hue,1.0,1.0, opacity/100);
@@ -30,26 +30,39 @@ public class Cantor {
         if (i == 1) {
             gc.strokeLine(x1, y, x2, y);
         } else {
-            displayCantors(i,x1,x2,y);
+            displayCantors(i,x1,x2,y, variance, hue, opacity);
         }
     }
 
-    void displayCantors(int iter, double x1, double x2, double y){
+    void displayCantors(int iter, double x1, double x2, double y, double variance, double hue, double opacity){
         gc.strokeLine(x1, y, x2, y);
 
-            y += lineSpacing;
-            double newLineLength = (x2 - x1)/3;
+        y += lineSpacing;
+        double newLineLength = (x2 - x1)/3;
 
-           //draw left line
-            gc.strokeLine(x1,y,x1+newLineLength,y);
+        //draw left line
+        gc.strokeLine(x1,y,x1+newLineLength,y);
 
-            //draw right line
-            gc.strokeLine(x2-newLineLength,y,x2,y);
+        //draw right line
+        gc.strokeLine(x2-newLineLength,y,x2,y);
 
-            if (iter > 0){
-                displayCantors(iter-1, x1, x1+newLineLength, y);
-                displayCantors(iter-1, x2-newLineLength, x2, y);
+            if (variance == 1){
+                double newColor = hue - 50;
+                Color color = Color.hsb(newColor, 1.0, 1.0, opacity / 100);
+                gc.setStroke(color);
+                if (iter > 0){
+                    displayCantors(iter-1, x1, x1+newLineLength, y, variance, newColor, opacity);
+                    displayCantors(iter-1, x2-newLineLength, x2, y, variance, newColor, opacity);
+                }
+            } else {
+                double newColor = hue;
+                if (iter > 0){
+                    displayCantors(iter-1, x1, x1+newLineLength, y, variance, newColor, opacity);
+                    displayCantors(iter-1, x2-newLineLength, x2, y, variance, newColor, opacity);
+                }
             }
+
+
 
     }
 }

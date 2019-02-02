@@ -25,7 +25,8 @@ public class gui extends Application {
         SIERPINSKI("Sierpinski Triangle"),
         SPIRAL("Spiral"),
         TREE("Tree"),
-        CANTOR("Cantor Lines");
+        CANTOR("Cantor Lines"),
+        CIRCLES("Circles");
 
 
         private final String curveName;

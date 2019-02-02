@@ -1,6 +1,7 @@
 //This is a skeleton as the program is a work in progress. 
 import javafx.scene.paint.Color;
 import javafx.scene.canvas.*;
+import javafx.scene.shape.Circle;
 
 /* 
 	This class is untested. Tests will commence elsewhen. Refer to commentary for information on accounted for issues.
@@ -132,7 +133,7 @@ public class Curve {
             //a.cantor(gc, xPos, yPos, iterations * 40, colorHue, scale, opacity, cVariance);
             //BITTE DIE NEUE KLASSE CANTOR BENUTZEN!!
             Cantor cantor = new Cantor();
-            cantor.drawCantor(gc, artwork, iterations, colorHue, opacity, scale);
+            cantor.drawCantor(gc, artwork, iterations, colorHue, opacity, scale, cVariance);
 
         } else if (curveType == 2) {
             xPos = 120.0;
@@ -142,6 +143,20 @@ public class Curve {
             //tree.drawTree(gc, artwork, iterations, colorHue, scale, opacity);
             Tree tree = new Tree();
             tree.drawTree(gc, artwork, iterations, colorHue,scale, opacity, cVariance);
+        } else if (curveType == 1) {
+            xPos = 120.0;
+            yPos = 800.0;
+            //Tree tree = new Tree();
+            //tree.drawBranch(gc, iterations, xPos, yPos, scale, colorHue, opacity, cVariance);
+            //tree.drawTree(gc, artwork, iterations, colorHue, scale, opacity);
+            Spiral spiral = new Spiral();
+            spiral.drawCircle(gc, 30,  iterations, colorHue, scale, opacity, cVariance);
+        } else if (curveType == 4) {
+            xPos = 120.0;
+            yPos = 800.0;
+            Circles circle = new Circles();
+            circle.drawCircle(gc, artwork, iterations, colorHue,scale, opacity, cVariance);
         }
+
     }
 }
