@@ -22,9 +22,10 @@ public class gui extends Application {
 
     public enum CurveTypes {
         SIERPINSKI("Sierpinski Triangle"),
-        KOCH("Koch Curve"),
+        SPIRAL("Spiral"),
         TREE("Tree"),
         CANTOR("Cantor Lines");
+
 
         private final String curveName;
 
