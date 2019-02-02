@@ -6,15 +6,14 @@ import javafx.scene.canvas.*;
 	This class is untested. Tests will commence elsewhen. Refer to commentary for information on accounted for issues.
 */
 
-public class Curve{
-
+public class Curve {
 
 
     /* private float color;
         TODO: Determine handling of color with the group. */
     private double xPos; //Edited positions so they're double.
     private double yPos;
-    private double scale;
+    private int scale;
     private int iterations;
     private int curveType;
     private double colorHue;
@@ -53,7 +52,7 @@ public class Curve{
     // depending on the choice, create new object from selected type
     // then draw
 
-    public Curve(double x, double y, int type, double sca, int iter, double colHue, int cVar, double opac){ //NOTE: Remember to re-add color handling. TODO: Determine how to implement type handling via subclasses.
+    public Curve(double x, double y, int type, int sca, int iter, double colHue, int cVar, double opac) { //NOTE: Remember to re-add color handling. TODO: Determine how to implement type handling via subclasses.
         xPos = x;
         yPos = y;
         curveType = type;
@@ -82,25 +81,13 @@ public class Curve{
     }
     */
     public void draw() { //To be implemented within each subclass.
-                         //TODO: Consider whether the Curve class should be abstract (in which case the readFromFile() method would need to be implemented elsewhere) or if an interface would be appropriate.
-    }
-
-    //Moved test function into Curve function for testing
-    private void drawBranch(GraphicsContext gc, int iterations, double startX, double startY, double scale, double hue){
-        if(iterations==0) return;
-        Color startCol = Color.hsb(colorHue,1.0,1.0, opacity/100);
-        gc.setStroke( startCol );
-
-        gc.strokeLine(startX, startY, startX+scale, startY-scale-iterations/2);
-        gc.strokeLine(startX, startY, startX-scale, startY-scale-iterations/2);
-
-        drawBranch(gc, iterations-1, startX+scale, startY-scale-iterations/2, scale/0.8, hue+cVariance);
+        //TODO: Consider whether the Curve class should be abstract (in which case the readFromFile() method would need to be implemented elsewhere) or if an interface would be appropriate.
     }
 
     // This is for testing whether the GUI passes all the right values
-    void printValues(){
+    void printValues() {
         System.out.printf(
-                "xPos: %f \nxPos: %f \nType: %d \nScale: %f \nIterations: %d \nColorHue: %f \nColor Variance: %d \nOpacity: %f \n"
+                "xPos: %f \nxPos: %f \nType: %d \nScale: %d \nIterations: %d \nColorHue: %f \nColor Variance: %d \nOpacity: %f \n"
                 , xPos, yPos, curveType, scale, iterations, colorHue, cVariance, opacity
         );
     }
@@ -128,19 +115,24 @@ public class Curve{
     }
     */
 
-    void mainDraw(Artwork artwork){
+    void mainDraw(Artwork artwork) {
+        //Some curves do not display properly if you give everything the same coordinates, therefore each if-statement needs its own coordinates.
         GraphicsContext gc = artwork.getCurrentLayer();
-        xPos = 600.0;
-        yPos = 600.0;
-        if (curveType == 0){
+        if (curveType == 0) {
+            xPos = 600.0;
+            yPos = 600.0;
             Sierpinski triangle = new Sierpinski();
-            triangle.drawTriangle(gc, artwork, xPos, yPos, iterations, colorHue, scale);
+            triangle.drawTriangle(gc, artwork, xPos, yPos, iterations, colorHue, scale, opacity);
 
-        } else if (curveType == 3){
-            Cantor cantor = new Cantor();
-            cantor.drawCantor(gc, artwork, xPos, yPos, iterations, colorHue, scale);
-            /*CantorSet a = new CantorSet();
-            a.cantor(gc, xPos, yPos, iterations, colorHue, scale);*/
+        } else if (curveType == 3) {
+            CantorSet a = new CantorSet();
+            a.cantor(gc, xPos, yPos, iterations * 40, colorHue, scale, opacity, cVariance);
+
+        } else if (curveType == 2) {
+            xPos = 120.0;
+            yPos = 800.0;
+            Tree a = new Tree();
+            a.drawBranch(gc, iterations, xPos, yPos, scale, colorHue, opacity, cVariance);
         }
     }
 }

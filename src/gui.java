@@ -22,9 +22,10 @@ public class gui extends Application {
 
     public enum CurveTypes {
         SIERPINSKI("Sierpinski Triangle"),
-        KOCH("Koch Curve"),
+        SPIRAL("Spiral"),
         TREE("Tree"),
         CANTOR("Cantor Lines");
+
 
         private final String curveName;
 
@@ -58,7 +59,7 @@ public class gui extends Application {
         topBtns.setPadding(new Insets( 0, 0, 0, -10));
         Button btnNewDefault = new Button("new default");
         Button btnNewCustom = new Button("new custom");
-        Button btnFromFile = new Button("read in file");
+        Button btnFromFile = new Button("read from file");
         topBtns.getChildren().addAll(btnNewDefault, btnNewCustom, btnFromFile);
         btnNewDefault.getStyleClass().add("menuLinkItem");
         btnNewCustom.getStyleClass().add("menuLinkItem");
