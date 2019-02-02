@@ -107,7 +107,7 @@ public class gui extends Application {
         // input iterations
         VBox setIter = new VBox(10);
         Label labelIter = new Label("iterations");
-        Slider inputIter = new Slider(1, 100, 50);
+        Slider inputIter = new Slider(1, 20, 1);
         inputIter.setShowTickLabels(true);
         inputIter.setShowTickMarks(true);
         inputIter.setMajorTickUnit(200);
@@ -127,7 +127,7 @@ public class gui extends Application {
         // input color variance
         VBox setVariance = new VBox(10);
         Label labelVariance = new Label("color variance");
-        Slider cVariance = new Slider(0, 40, 0);
+        Slider cVariance = new Slider(0, 1, 0);
         cVariance.setMajorTickUnit(5);
         setVariance.getChildren().addAll(labelVariance, cVariance);
 
