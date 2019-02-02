@@ -14,10 +14,14 @@ public class Sierpinski {
     Point2D C;
     double spacing, a;
 
-    void drawTriangle(GraphicsContext gc, Artwork artwork, double x, double y, int i, double hue, double scale) {
+    // Added opacity.
+    //TODO: Variance and scale.
+
+
+    void drawTriangle(GraphicsContext gc, Artwork artwork, double x, double y, int i, double hue, double scale, double opacity) {
         this.gc = gc;
 
-        Color strColor = Color.hsb(170, 1.0, 1.0);
+        Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
         gc.setStroke(strColor);
         gc.setLineWidth(3);
         gc.setFill(strColor);
