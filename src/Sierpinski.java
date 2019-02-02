@@ -17,7 +17,7 @@ public class Sierpinski {
     //TODO: Variance and scale.
 
 
-    void drawTriangle(GraphicsContext gc, Artwork artwork, int i, double hue, double scale, double opacity) {
+    void drawTriangle(GraphicsContext gc, Artwork artwork, int i, double hue, int variance, double scale, double opacity) {
         this.gc = gc;
 
         Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
@@ -58,25 +58,51 @@ public class Sierpinski {
                 gc.strokeLine(B.getX(), B.getY(), C.getX(), C.getY());
 
             } else {
-                displayTriangles(i, A, B, C);
+                displayTriangles(i, A, B, C, hue, variance, opacity );
             }
 
     }
 
-    void displayTriangles(int iter, Point2D a, Point2D b, Point2D c){
-        gc.strokeLine(a.getX(), a.getY(), b.getX(), b.getY());
-        gc.strokeLine(a.getX(), a.getY(), c.getX(), c.getY());
-        gc.strokeLine(b.getX(), b.getY(), c.getX(), c.getY());
+    void displayTriangles(int iter, Point2D a, Point2D b, Point2D c, double hue, int variance, double opacity){
 
-        if (iter > 1){
+        if (variance == 1) {
+
+
+
+
+            gc.strokeLine(a.getX(), a.getY(), b.getX(), b.getY());
+            gc.strokeLine(a.getX(), a.getY(), c.getX(), c.getY());
+            gc.strokeLine(b.getX(), b.getY(), c.getX(), c.getY());
+
+            double newColor = hue - 50;
+            Color color = Color.hsb(newColor, 1.0, 1.0, opacity / 100);
+            gc.setStroke(color);
+
+            if (iter > 1) {
          /*   Point2D pAB = A.midpoint(B);
             Point2D pBC = B.midpoint(C);
             Point2D pCA = C.midpoint(A);*/
 
-            displayTriangles(iter-1,a,a.midpoint(b),a.midpoint(c));
-            displayTriangles(iter-1,b,a.midpoint(b),b.midpoint(c));
-            displayTriangles(iter-1,c,c.midpoint(b),a.midpoint(c));
+                displayTriangles(iter - 1, a, a.midpoint(b), a.midpoint(c), newColor, variance, opacity);
+                displayTriangles(iter - 1, b, a.midpoint(b), b.midpoint(c), newColor, variance, opacity);
+                displayTriangles(iter - 1, c, c.midpoint(b), a.midpoint(c), newColor, variance, opacity);
+            }
 
+        } else {
+            double newColor = hue;
+            gc.strokeLine(a.getX(), a.getY(), b.getX(), b.getY());
+            gc.strokeLine(a.getX(), a.getY(), c.getX(), c.getY());
+            gc.strokeLine(b.getX(), b.getY(), c.getX(), c.getY());
+
+            if (iter > 1) {
+         /*   Point2D pAB = A.midpoint(B);
+            Point2D pBC = B.midpoint(C);
+            Point2D pCA = C.midpoint(A);*/
+
+                displayTriangles(iter - 1, a, a.midpoint(b), a.midpoint(c), newColor, variance, opacity);
+                displayTriangles(iter - 1, b, a.midpoint(b), b.midpoint(c), newColor, variance, opacity);
+                displayTriangles(iter - 1, c, c.midpoint(b), a.midpoint(c), newColor, variance, opacity);
+            }
         }
     }
 /*

@@ -126,7 +126,7 @@ public class Curve {
             xPos = 600.0;
             yPos = 600.0;
             Sierpinski triangle = new Sierpinski();
-            triangle.drawTriangle(gc, artwork, iterations, colorHue, scale, opacity);
+            triangle.drawTriangle(gc, artwork, iterations, colorHue, cVariance, scale, opacity);
 
         } else if (curveType == 3) {
             //CantorSet a = new CantorSet();
