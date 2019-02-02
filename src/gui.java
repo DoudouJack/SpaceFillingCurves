@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.stage.*;
+import javafx.scene.shape.Polygon;
 
 import java.awt.*;
 import java.io.File;
@@ -58,7 +59,7 @@ public class gui extends Application {
         topBtns.setPadding(new Insets( 0, 0, 0, -10));
         Button btnNewDefault = new Button("new default");
         Button btnNewCustom = new Button("new custom");
-        Button btnFromFile = new Button("read in file");
+        Button btnFromFile = new Button("read from file");
         topBtns.getChildren().addAll(btnNewDefault, btnNewCustom, btnFromFile);
         btnNewDefault.getStyleClass().add("menuLinkItem");
         btnNewCustom.getStyleClass().add("menuLinkItem");
@@ -175,7 +176,15 @@ public class gui extends Application {
                 Curve curve = getValues( inputCurve, inputScale, inputIter, inputColor,  cVariance, inputOpacity);
                 // call test methods:
                 curve.printValues();
-                curve.testDrawing( easel.getArtwork() );
+                //curve.testDrawing( easel.getArtwork() );
+            //Polygon triangle = new Polygon();
+            //triangle.getPoints().addAll(50.0, 0.0,  0.0, 50.0,100.0, 50.0);
+            //triangle.setFill(Color.WHITE);
+            //triangle.setStroke( strColor );
+            //curve.test2Drawing(easel.getArtwork());
+            curve.mainDraw(easel.getArtwork());
+
+
         });
 
         btnClear.setOnAction( e -> {

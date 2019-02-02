@@ -1,7 +1,7 @@
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 
-public class Easel extends StackPane {
+public class Easel extends  StackPane {
     private Artwork artwork;
 
   /* to be deleted?
