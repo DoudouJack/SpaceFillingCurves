@@ -97,7 +97,11 @@ public class gui extends Application {
         // input Scale
         VBox setScale = new VBox(10);
         Label labelScale = new Label("scale");
-        Slider inputScale = new Slider(1, 100, 50);
+        Slider inputScale = new Slider(0.5, 4, 1);
+        inputScale.setMajorTickUnit(0.5);
+        inputScale.setMinorTickCount(0);
+        inputScale.setSnapToTicks(true);
+        inputScale.setShowTickMarks(true);
         setScale.getChildren().addAll(labelScale, inputScale);
 
         // input iterations
