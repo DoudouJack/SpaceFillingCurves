@@ -14,6 +14,7 @@ import javafx.stage.*;
 import javafx.scene.shape.Polygon;
 
 import java.awt.*;
+import java.io.File;
 import java.lang.Math;
 
 
@@ -96,15 +97,17 @@ public class gui extends Application {
         // input Scale
         VBox setScale = new VBox(10);
         Label labelScale = new Label("scale");
-        Slider inputScale = new Slider(0.0, 10.0, 1.0);
+        Slider inputScale = new Slider(0.5, 4, 1);
+        inputScale.setMajorTickUnit(0.5);
+        inputScale.setMinorTickCount(0);
+        inputScale.setSnapToTicks(true);
+        inputScale.setShowTickMarks(true);
         setScale.getChildren().addAll(labelScale, inputScale);
-        inputScale.setBlockIncrement(0.2f);
-        inputScale.setMajorTickUnit(0.2f);
 
         // input iterations
         VBox setIter = new VBox(10);
         Label labelIter = new Label("iterations");
-        Slider inputIter = new Slider(1, 20, 1);
+        Slider inputIter = new Slider(1, 100, 50);
         inputIter.setShowTickLabels(true);
         inputIter.setShowTickMarks(true);
         inputIter.setMajorTickUnit(200);
@@ -124,14 +127,14 @@ public class gui extends Application {
         // input color variance
         VBox setVariance = new VBox(10);
         Label labelVariance = new Label("color variance");
-        Slider cVariance = new Slider(0, 1, 0);
+        Slider cVariance = new Slider(0, 40, 0);
         cVariance.setMajorTickUnit(5);
         setVariance.getChildren().addAll(labelVariance, cVariance);
 
         // input opacity
         VBox setOpacity = new VBox(10);
         Label labelOpacity = new Label("opacity");
-        Slider inputOpacity = new Slider(1, 100, 100);
+        Slider inputOpacity = new Slider(1, 100, 50);
         inputOpacity.setShowTickLabels(true);
         inputOpacity.setShowTickMarks(true);
         inputOpacity.setMajorTickUnit(100);
@@ -184,7 +187,6 @@ public class gui extends Application {
             //triangle.setFill(Color.WHITE);
             //triangle.setStroke( strColor );
             //curve.test2Drawing(easel.getArtwork());
-
             curve.mainDraw(easel.getArtwork());
 
 
@@ -206,6 +208,18 @@ public class gui extends Application {
 
         btnNewCustom.setOnAction( e -> {
             PopUpNew.open(easel);
+        });
+
+        btnFromFile.setOnAction( e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Resource File");
+
+            File file = fileChooser.showOpenDialog(primaryStage);
+            if (file != null) {
+                // TODO: put execution code here
+                // read in file, draw curve...
+                System.out.println( "File: " + file.getName() );
+            }
         });
 
 
