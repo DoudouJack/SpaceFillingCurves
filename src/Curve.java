@@ -58,7 +58,7 @@ class Curve {
             tree.drawTree(gc, artwork, iterations, colorHue, scale, opacity, cVariance);
         } else if (curveType == 1) {
             Spiral spiral = new Spiral();
-            spiral.drawSpiral(gc, 300 * scale, colorHue, cVariance, opacity);
+            spiral.drawSpiral(gc, 300 * scale, colorHue, cVariance, opacity, iterations);
         } else if (curveType == 4) {
             Circles circle = new Circles();
             circle.drawCircle(gc, artwork, iterations, colorHue, scale, opacity, cVariance);
@@ -67,7 +67,7 @@ class Curve {
             koch.drawKoch(gc, artwork, iterations, colorHue, scale, opacity, cVariance);
         } else if (curveType == 6) {
             Rectcursive rect = new Rectcursive();
-            rect.drawRect(gc, colorHue, opacity, cVariance, iterations, 0, 0, 800, 800); //emergency function in case nobody can fix Koch in time, lol
+            rect.drawRect(gc, colorHue, opacity, cVariance, iterations, 0, 0, 800, 800, scale); //emergency function in case nobody can fix Koch in time, lol
         }
     }
 }

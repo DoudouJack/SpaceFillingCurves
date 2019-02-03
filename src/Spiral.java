@@ -12,7 +12,7 @@ class Spiral {
     /**
      * Draws a spiral using the strokeArc() method.
      * */
-    void drawSpiral(GraphicsContext gc, double radius, double colorHue, double cVariance, double opacity) {
+    void drawSpiral(GraphicsContext gc, double radius, double colorHue, double cVariance, double opacity, int iterations) {
         if(cVariance == 1){
             colorHue = colorHue -50;
         }
@@ -20,9 +20,9 @@ class Spiral {
         gc.setLineWidth(3);
         gc.setStroke( startCol );
         gc.strokeArc(0, 0, radius, radius, 90.0, 360.0, ArcType.CHORD);
-        if(radius > 2) {
+        if(radius > 2 && iterations != 0) {
             radius *= 0.75f;
-                    drawSpiral(gc, radius, colorHue, cVariance, opacity);
+                    drawSpiral(gc, radius, colorHue, cVariance, opacity, iterations-1);
         }
     }
 }
