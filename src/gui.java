@@ -27,7 +27,8 @@ public class gui extends Application {
         TREE("Tree"),
         CANTOR("Cantor Lines"),
         CIRCLES("Circles"),
-        KOCH("Koch Curve");
+        KOCH("Koch Curve"),
+        RECTCURSIVE ("Rectcursive");
 
 
         private final String curveName;

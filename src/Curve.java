@@ -120,43 +120,29 @@ public class Curve {
     // BITTE KEINE XPOS UND YPOS BENUTZEN DA DIE FUNKTIONEN DRAW SELBER CHECKEN, DASS DAS OBJEKT IN DER MITTE
     // SO GROSS WIE MOGLICH GEZEICHNET WIRD!
     void mainDraw(Artwork artwork) {
-        //Some curves do not display properly if you give everything the same coordinates, therefore each if-statement needs its own coordinates.
         GraphicsContext gc = artwork.getCurrentLayer();
         if (curveType == 0) {
-            xPos = 600.0;
-            yPos = 600.0;
             Sierpinski triangle = new Sierpinski();
             triangle.drawTriangle(gc, artwork, iterations, colorHue, cVariance, scale, opacity);
-
         } else if (curveType == 3) {
-            //CantorSet a = new CantorSet();
-            //a.cantor(gc, xPos, yPos, iterations * 40, colorHue, scale, opacity, cVariance);
             //BITTE DIE NEUE KLASSE CANTOR BENUTZEN!!
             Cantor cantor = new Cantor();
             cantor.drawCantor(gc, artwork, iterations, colorHue, opacity, scale, cVariance);
-
         } else if (curveType == 2) {
-            xPos = 120.0;
-            yPos = 800.0;
-            //Tree tree = new Tree();
-            //tree.drawBranch(gc, iterations, xPos, yPos, scale, colorHue, opacity, cVariance);
-            //tree.drawTree(gc, artwork, iterations, colorHue, scale, opacity);
             Tree tree = new Tree();
-            tree.drawTree(gc, artwork, iterations, colorHue,scale, opacity, cVariance);
+            tree.drawTree(gc, artwork, iterations, colorHue, scale, opacity, cVariance);
         } else if (curveType == 1) {
-            xPos = 120.0;
-            yPos = 800.0;
             Spiral spiral = new Spiral();
-            spiral.drawSpiral(gc, 300*scale, colorHue, cVariance, opacity);
+            spiral.drawSpiral(gc, 300 * scale, colorHue, cVariance, opacity);
         } else if (curveType == 4) {
-            xPos = 120.0;
-            yPos = 800.0;
             Circles circle = new Circles();
-            circle.drawCircle(gc, artwork, iterations, colorHue,scale, opacity, cVariance);
-        } else if (curveType == 5){
+            circle.drawCircle(gc, artwork, iterations, colorHue, scale, opacity, cVariance);
+        } else if (curveType == 5) {
             Koch koch = new Koch();
-            koch.drawKoch(gc,artwork,iterations,colorHue, scale, opacity, cVariance);
+            koch.drawKoch(gc, artwork, iterations, colorHue, scale, opacity, cVariance);
+        } else if (curveType == 6) {
+            Rectcursive rect = new Rectcursive();
+            rect.drawRect(gc, colorHue, opacity, cVariance, iterations, 0, 0, 800, 800); //emergency function in case nobody can fix Koch in time, lol
         }
-
     }
 }
