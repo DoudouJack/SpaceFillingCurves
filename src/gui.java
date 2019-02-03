@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.WritableImage;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -21,7 +22,7 @@ import javafx.embed.swing.SwingFXUtils;
 
 /**
  * This class' main function launches the application.
- * It displays the Graphical User Interface and can create a new Curve object
+ * It displays the Graphical User Interface and can create a new Curve object and save artwork to file
  * @author Julia Filzinger
  */
 
@@ -61,6 +62,7 @@ public class gui extends Application {
         Stage window;
         window = primaryStage;
         window.setTitle("Space Filling Curves");
+        window.getIcons().add(new Image( gui.class.getResourceAsStream("/resources/icons/appIcon.png")) );
 
         // B U I L D   C O N T R O L S
         VBox topBtns = new VBox(0);
@@ -197,9 +199,9 @@ public class gui extends Application {
         // G U I   F U N C T I O N S
         btnStart.setOnAction( e -> {
                 Curve curve = getValues( inputCurve, inputScale, inputStrokeWidth, inputIter, inputColor,  cVariance, inputOpacity);
-                // call test methods:
-                curve.printValues();
-            curve.mainDraw(easel.getArtwork());
+
+                curve.printValues(); // test method
+                curve.mainDraw(easel.getArtwork());
         });
 
         btnClear.setOnAction( e -> {
@@ -270,29 +272,6 @@ public class gui extends Application {
 
     }
 
-    /**
-     * Reads a text file with a 'type/scale/iterations/hue/variance/opacity' format and then proceeds to draw as many curves as the file has, all separated by line breaks.
-     * @author Fee Di Mascio
-     * */
-    private void readFromFile(File file, Artwork artwork) throws FileNotFoundException {
-        String ln;
-        String[] parts;
-        Scanner sc = new Scanner(file);
-        while(sc.hasNextLine()){
-            ln = sc.nextLine();
-            parts = ln.split("/");
-            int type = Integer.parseInt(parts[0]);
-            int sca = Integer.parseInt(parts[1]);
-            double strW = Double.parseDouble(parts[2]);
-            int iter = Integer.parseInt(parts[3]);
-            double hue = Double.parseDouble(parts[4]);
-            int cVar = Integer.parseInt(parts[5]);
-            double opac = Double.parseDouble(parts[6]);
-            Curve curve = new Curve(type, sca, strW, iter, hue, cVar, opac);
-            curve.mainDraw(artwork);
-        }
-    }
-
     private Curve getValues( ChoiceBox<String> inputCurve, Slider inputScale, Slider inputStrokeWidth, Slider inputIter, Slider inputColor, Slider inputVariance, Slider inputOpacity){
 
         int curveType = getCurveTypeNumber( inputCurve.getValue() );
@@ -316,6 +295,29 @@ public class gui extends Application {
 
     private int getIntValue( Slider slider ){
         return (int) Math.round( slider.getValue() );
+    }
+
+    /**
+     * Reads a text file with a 'type/scale/iterations/hue/variance/opacity' format and then proceeds to draw as many curves as the file has, all separated by line breaks.
+     * @author Fee Di Mascio
+     * */
+    private void readFromFile(File file, Artwork artwork) throws FileNotFoundException {
+        String ln;
+        String[] parts;
+        Scanner sc = new Scanner(file);
+        while(sc.hasNextLine()){
+            ln = sc.nextLine();
+            parts = ln.split("/");
+            int type = Integer.parseInt(parts[0]);
+            int sca = Integer.parseInt(parts[1]);
+            double strW = Double.parseDouble(parts[2]);
+            int iter = Integer.parseInt(parts[3]);
+            double hue = Double.parseDouble(parts[4]);
+            int cVar = Integer.parseInt(parts[5]);
+            double opac = Double.parseDouble(parts[6]);
+            Curve curve = new Curve(type, sca, strW, iter, hue, cVar, opac);
+            curve.mainDraw(artwork);
+        }
     }
 }
 

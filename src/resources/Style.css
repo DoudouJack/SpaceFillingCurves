@@ -112,6 +112,15 @@
     -fx-background-color: -fx-warm-400;
 }
 
+.bigButton:pressed{
+    -fx-border-color: -fx-warm-400;
+    -fx-text-fill: -fx-bg-2;
+    -fx-background-color: -fx-warm-400;
+    -fx-graphic: url('icons/hourglassHg.png');
+    -fx-graphic-text-gap: 5;
+
+}
+
 .hButton{
     -fx-border-color: -fx-warm-800;
     -fx-background-radius: 100;
@@ -156,12 +165,12 @@
 }
 
 #newEmpty{
-    -fx-graphic: url('icons/empty.png');
+    -fx-graphic: url('icons/square.png');
     -fx-graphic-text-gap: 5;
 }
 
 #newRand{
-     -fx-graphic: url('icons/dice.png');
+     -fx-graphic: url('icons/empty.png');
      -fx-graphic-text-gap: 5;
  }
 
