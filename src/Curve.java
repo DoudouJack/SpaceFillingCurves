@@ -53,7 +53,7 @@ public class Curve {
     // depending on the choice, create new object from selected type
     // then draw
 
-    public Curve(double x, double y, int type, int sca, int iter, double colHue, int cVar, double opac) { //NOTE: Remember to re-add color handling. TODO: Determine how to implement type handling via subclasses.
+    Curve(double x, double y, int type, int sca, int iter, double colHue, int cVar, double opac) { //NOTE: Remember to re-add color handling. TODO: Determine how to implement type handling via subclasses.
         xPos = x;
         yPos = y;
         curveType = type;
@@ -146,11 +146,8 @@ public class Curve {
         } else if (curveType == 1) {
             xPos = 120.0;
             yPos = 800.0;
-            //Tree tree = new Tree();
-            //tree.drawBranch(gc, iterations, xPos, yPos, scale, colorHue, opacity, cVariance);
-            //tree.drawTree(gc, artwork, iterations, colorHue, scale, opacity);
             Spiral spiral = new Spiral();
-            spiral.drawCircle(gc, 30,  iterations, colorHue, scale, opacity, cVariance);
+            spiral.drawSpiral(gc, 300*scale, colorHue, cVariance, opacity);
         } else if (curveType == 4) {
             xPos = 120.0;
             yPos = 800.0;
