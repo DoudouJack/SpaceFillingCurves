@@ -2,7 +2,16 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 
+/**
+ * Class for a spiral-like shape.
+ * @author Fee Di Mascio
+ */
+
+
 class Spiral {
+    /**
+     * Draws a spiral using the strokeArc() method.
+     * */
     void drawSpiral(GraphicsContext gc, double radius, double colorHue, double cVariance, double opacity) {
         if(cVariance == 1){
             colorHue = colorHue -50;

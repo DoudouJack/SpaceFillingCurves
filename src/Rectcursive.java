@@ -1,7 +1,17 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+/**
+ * Class for recursive rectangles.
+ * @author Fee Di Mascio
+ */
+
 class Rectcursive {
+    /**
+     * Draws rectangles that progressively get smaller using the strokeRect() method.
+     * @param w Width of the rectangle.
+     * @param h Height of the rectangle.
+     */
     void drawRect(GraphicsContext gc, double hue, double opacity, int variance, int iterations, double x, double y, double w, double h) {
         if (variance == 1){
             hue = hue-50;

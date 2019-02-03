@@ -1,5 +1,10 @@
 import javafx.scene.canvas.GraphicsContext;
 
+/**
+ * This class is designed to handle parameters received from the GUI and then apply the correct drawing functions for the fractals.
+ * @author Fee Di Mascio, Edouard Jacques, Julia Filzinger
+ */
+
 class Curve {
     private int scale;
     private int iterations;
@@ -7,6 +12,10 @@ class Curve {
     private double colorHue;
     private int cVariance;
     private double opacity;
+
+    /**
+     * Curve constructor containing all values necessary to draw a fractal.
+     * */
 
     Curve(int type, int sca, int iter, double colHue, int cVar, double opac) {
         curveType = type;
@@ -18,6 +27,10 @@ class Curve {
     }
 
     // This is for testing whether the GUI passes all the right values
+
+    /**
+     * Prints out all relevant information for easier debugging.
+     */
     void printValues() {
         System.out.printf("Type: %d \nScale: %d \nIterations: %d \nColorHue: %f \nColor Variance: %d \nOpacity: %f \n", curveType, scale, iterations, colorHue, cVariance, opacity);
     }
@@ -26,6 +39,11 @@ class Curve {
     // write a function that triggers the draw function depending on curveType (int)
     // depending on the choice, create new object from selected type
     // then draw
+
+    /**
+     * Creates a new object and calls its draw method depending on the item in the GUI's drop-down menu that was selected.
+     */
+
     void mainDraw(Artwork artwork) {
         GraphicsContext gc = artwork.getCurrentLayer();
         if (curveType == 0) {
