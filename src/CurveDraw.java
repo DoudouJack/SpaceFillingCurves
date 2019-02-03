@@ -26,7 +26,7 @@ import javafx.embed.swing.SwingFXUtils;
  * @author Julia Filzinger
  */
 
-public class gui extends Application {
+public class CurveDraw extends Application {
     public enum CurveTypes {
         SIERPINSKI("Sierpinski Triangle"),
         SPIRAL("Spiral"),
@@ -61,8 +61,8 @@ public class gui extends Application {
         BorderPane layout = new BorderPane();
         Stage window;
         window = primaryStage;
-        window.setTitle("Space Filling Curves");
-        window.getIcons().add(new Image( gui.class.getResourceAsStream("/resources/icons/appIcon.png")) );
+        window.setTitle("Draw Curves");
+        window.getIcons().add(new Image( CurveDraw.class.getResourceAsStream("/resources/icons/appIcon.png")) );
 
         // B U I L D   C O N T R O L S
         VBox topBtns = new VBox(0);
