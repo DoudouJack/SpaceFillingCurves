@@ -11,6 +11,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * @author Julia Filzinger
+ */
 
 public class gui extends Application {
     public enum CurveTypes {
@@ -217,8 +220,11 @@ public class gui extends Application {
 
     }
 
+    /**
+     * Reads a text file with a 'type/scale/iterations/hue/variance/opacity' format and then proceeds to draw as many curves as the file has, all separated by line breaks.
+     * @author Fee Di Mascio
+     * */
     private void readFromFile(File file, Artwork artwork) throws FileNotFoundException {
-        //Reads multiple curves in the type/scale/iterations/hue/variance/opacity format and then draws them.
         String ln;
         String[] parts;
         Scanner sc = new Scanner(file);
