@@ -12,11 +12,11 @@ public class Cantor {
 
 
 
-    void drawCantor(GraphicsContext gc, Artwork artwork, int i, double hue, double opacity, double scale, double variance){
+    void drawCantor(GraphicsContext gc, Artwork artwork, int i, double hue, double opacity, double scale, double variance, double stroke){
         this.gc = gc;
 
         Color startCol = Color.hsb(hue,1.0,1.0, opacity/100);
-        gc.setLineWidth(10*scale);
+        gc.setLineWidth(scale*stroke);
         gc.setStroke( startCol );
 
         lineSpacing = lineSpacing*scale;

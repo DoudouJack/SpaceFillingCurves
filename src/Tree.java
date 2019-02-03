@@ -7,11 +7,11 @@ class Tree {
     GraphicsContext gc;
 
 
-    void drawTree(GraphicsContext gc, Artwork artwork, int i, double hue, double scale, double opacity, int variance) {
+    void drawTree(GraphicsContext gc, Artwork artwork, int i, double hue, double scale, double opacity, int variance, double stroke) {
         this.gc = gc;
         Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
         gc.setStroke(strColor);
-        gc.setLineWidth(2);
+        gc.setLineWidth(stroke);
         gc.setFill(strColor);
         x1 = artwork.getWidth()/2;
         y1 = 800;

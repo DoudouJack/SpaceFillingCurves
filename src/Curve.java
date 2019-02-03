@@ -7,6 +7,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 class Curve {
     private int scale;
+    private double strokeW;
     private int iterations;
     private int curveType;
     private double colorHue;
@@ -17,8 +18,9 @@ class Curve {
      * Curve constructor containing all values necessary to draw a fractal.
      * */
 
-    Curve(int type, int sca, int iter, double colHue, int cVar, double opac) {
+    Curve(int type, int sca, double strW, int iter, double colHue, int cVar, double opac) {
         curveType = type;
+        strokeW = strW;
         scale = sca;
         iterations = iter;
         colorHue = colHue;
@@ -32,7 +34,7 @@ class Curve {
      * Prints out all relevant information for easier debugging.
      */
     void printValues() {
-        System.out.printf("Type: %d \nScale: %d \nIterations: %d \nColorHue: %f \nColor Variance: %d \nOpacity: %f \n", curveType, scale, iterations, colorHue, cVariance, opacity);
+        System.out.printf("Type: %d \nScale: %d \nStroke: %f \nIterations: %d \nColorHue: %f \nColor Variance: %d \nOpacity: %f \n", curveType, scale, strokeW, iterations, colorHue, cVariance, opacity);
     }
     // BITTE KEINE XPOS UND YPOS BENUTZEN DA DIE FUNKTIONEN DRAW SELBER CHECKEN, DASS DAS OBJEKT IN DER MITTE
     // SO GROSS WIE MOGLICH GEZEICHNET WIRD!
@@ -48,20 +50,20 @@ class Curve {
         GraphicsContext gc = artwork.getCurrentLayer();
         if (curveType == 0) {
             Sierpinski triangle = new Sierpinski();
-            triangle.drawTriangle(gc, artwork, iterations, colorHue, cVariance, scale, opacity);
+            triangle.drawTriangle(gc, artwork, iterations, colorHue, cVariance, scale, opacity, strokeW);
         } else if (curveType == 3) {
             //BITTE DIE NEUE KLASSE CANTOR BENUTZEN!!
             Cantor cantor = new Cantor();
-            cantor.drawCantor(gc, artwork, iterations, colorHue, opacity, scale, cVariance);
+            cantor.drawCantor(gc, artwork, iterations, colorHue, opacity, scale, cVariance, strokeW);
         } else if (curveType == 2) {
             Tree tree = new Tree();
-            tree.drawTree(gc, artwork, iterations, colorHue, scale, opacity, cVariance);
+            tree.drawTree(gc, artwork, iterations, colorHue, scale, opacity, cVariance, strokeW);
         } else if (curveType == 1) {
             Spiral spiral = new Spiral();
-            spiral.drawSpiral(gc, 300 * scale, colorHue, cVariance, opacity, iterations);
+            spiral.drawSpiral(gc, 300 * scale, colorHue, cVariance, opacity, iterations, strokeW);
         } else if (curveType == 4) {
             Circles circle = new Circles();
-            circle.drawCircle(gc, artwork, iterations, colorHue, scale, opacity, cVariance);
+            circle.drawCircle(gc, artwork, iterations, colorHue, scale, opacity, cVariance, strokeW);
         } else if (curveType == 5) {
             Koch koch = new Koch();
             koch.drawKoch(gc, artwork, iterations, colorHue, scale, opacity, cVariance);

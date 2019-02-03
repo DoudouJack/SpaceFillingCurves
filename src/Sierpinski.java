@@ -10,11 +10,11 @@ public class Sierpinski {
 
     double spacing, a;
 
-    void drawTriangle(GraphicsContext gc, Artwork artwork, int i, double hue, int variance, double scale, double opacity) {
+    void drawTriangle(GraphicsContext gc, Artwork artwork, int i, double hue, int variance, double scale, double opacity, double stroke) {
         this.gc = gc;
         Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
         gc.setStroke(strColor);
-        gc.setLineWidth(1);
+        gc.setLineWidth(stroke);
         gc.setFill(strColor);
 
         double squareSize = Math.min(artwork.getWidth(), artwork.getHeight());

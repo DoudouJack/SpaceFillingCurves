@@ -7,7 +7,7 @@ public class Circles {
     double radius;      //radius of first circle
     double xMid, yMid;  //center point (x,y) of circle
 
-    void drawCircle(GraphicsContext gc, Artwork artwork, int i, double hue, double scale, double opacity, int variance) {
+    void drawCircle(GraphicsContext gc, Artwork artwork, int i, double hue, double scale, double opacity, int variance, double stroke) {
 
         this.gc = gc;
         radius = artwork.getWidth() / 5*scale;
@@ -22,7 +22,7 @@ public class Circles {
 
         Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
         gc.setStroke(strColor);
-        gc.setLineWidth(2);
+        gc.setLineWidth(stroke);
         gc.setFill(strColor);
 
         gc.strokeLine(0, yMid, artwork.getWidth()-1, yMid);

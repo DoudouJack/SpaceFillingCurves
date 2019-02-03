@@ -5,16 +5,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.awt.*;
+import javax.imageio.ImageIO;
+import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+import javafx.embed.swing.SwingFXUtils;
 
 /**
  * This class' main function launches the application.
@@ -55,7 +58,7 @@ public class gui extends Application {
 
         // S E T U P   W I N D O W + L A Y O U T
         BorderPane layout = new BorderPane();
-        Stage window = new Stage();
+        Stage window;
         window = primaryStage;
         window.setTitle("Space Filling Curves");
 
@@ -111,7 +114,7 @@ public class gui extends Application {
         // input iterations
         VBox setIter = new VBox(10);
         Label labelIter = new Label("iterations");
-        Slider inputIter = new Slider(1, 12, 10);
+        Slider inputIter = new Slider(1, 15, 10);
         inputIter.setShowTickLabels(true);
         inputIter.setShowTickMarks(true);
         inputIter.setMajorTickUnit(200);
@@ -145,6 +148,16 @@ public class gui extends Application {
         inputOpacity.setMinorTickCount(1);
         setOpacity.getChildren().addAll(labelOpacity, inputOpacity);
 
+        // input stroke width
+        VBox setStrokeWidth = new VBox(10);
+        Label labelStroke = new Label("stroke width");
+        Slider inputStrokeWidth = new Slider(0.5, 5, 1);
+        inputStrokeWidth.setMajorTickUnit(0.5);
+        inputStrokeWidth.setMinorTickCount(0);
+        inputStrokeWidth.setShowTickMarks(true);
+        inputStrokeWidth.setSnapToTicks(true);
+        setStrokeWidth.getChildren().addAll(labelStroke, inputStrokeWidth);
+
         // create tooltips
         Tooltip tooltipDefault = new Tooltip("Create a new artwork with default values.");
         btnNewDefault.setTooltip(tooltipDefault);
@@ -162,7 +175,7 @@ public class gui extends Application {
         VBox controls = new VBox(20);
         controls.setPrefWidth(250);
         controls.setPadding(new Insets( 40, 25, 40, 25));
-        controls.getChildren().addAll(topBtns, setCurve, setScale, setIter, setColor, setVariance, setOpacity, bottomBtns);
+        controls.getChildren().addAll(topBtns, setCurve, setIter, setStrokeWidth, setColor, setVariance, setOpacity, setScale, bottomBtns);
 
         Easel easel = new Easel(); // This will hold the artwork group (of canvases)
         easel.setStyle("-fx-background-color: #151515");
@@ -183,7 +196,7 @@ public class gui extends Application {
 
         // G U I   F U N C T I O N S
         btnStart.setOnAction( e -> {
-                Curve curve = getValues( inputCurve, inputScale, inputIter, inputColor,  cVariance, inputOpacity);
+                Curve curve = getValues( inputCurve, inputScale, inputStrokeWidth, inputIter, inputColor,  cVariance, inputOpacity);
                 // call test methods:
                 curve.printValues();
             curve.mainDraw(easel.getArtwork());
@@ -207,19 +220,49 @@ public class gui extends Application {
             PopUpNew.open(easel);
         });
 
+        // READ FROM FILE
         btnFromFile.setOnAction( e -> {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Open Resource File");
+            fileChooser.setTitle("open resource file");
+
+            // set extension filter
+            FileChooser.ExtensionFilter extFilterTxt = new FileChooser.ExtensionFilter("txt files (.txt)", "*.txt");
+            fileChooser.getExtensionFilters().addAll(extFilterTxt);
 
             File file = fileChooser.showOpenDialog(primaryStage);
             if (file != null) {
                 // TODO: put execution code here
-                // read in file, draw curve...
-                System.out.println( "File: " + file.getName() );
+                System.out.println( "Read in file: " + file.getName() );
                 try {
                     readFromFile(file, easel.getArtwork());
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
+                }
+            }
+        });
+
+    // SAVE TO FILE
+        btnSaveFile.setOnAction( e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("save your artwork");
+
+            //Set extension filter
+            FileChooser.ExtensionFilter extFilterPng = new FileChooser.ExtensionFilter(".png", "*.png");
+            FileChooser.ExtensionFilter extFilterJpg = new FileChooser.ExtensionFilter(".jpeg", "*.jpeg");
+            fileChooser.getExtensionFilters().addAll(extFilterPng, extFilterJpg);
+
+            //Show save file dialog
+            File file = fileChooser.showSaveDialog(primaryStage);
+
+            if(file != null){
+                try {
+                    Artwork myArtwork = easel.getArtwork();
+                    WritableImage writableImage = new WritableImage(myArtwork.getWidth(), myArtwork.getHeight());
+                    myArtwork.snapshot(null, writableImage);
+                    RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
+                    ImageIO.write(renderedImage, "png", file);
+                } catch (IOException ex) {
+                    System.out.print("Error while writing file: " + ex);
                 }
             }
         });
@@ -240,20 +283,21 @@ public class gui extends Application {
             parts = ln.split("/");
             int type = Integer.parseInt(parts[0]);
             int sca = Integer.parseInt(parts[1]);
-            int iter = Integer.parseInt(parts[2]);
-            double hue = Double.parseDouble(parts[3]);
-            int cVar = Integer.parseInt(parts[4]);
-            double opac = Double.parseDouble(parts[5]);
-            Curve curve = new Curve(type, sca, iter, hue, cVar, opac);
+            double strW = Double.parseDouble(parts[2]);
+            int iter = Integer.parseInt(parts[3]);
+            double hue = Double.parseDouble(parts[4]);
+            int cVar = Integer.parseInt(parts[5]);
+            double opac = Double.parseDouble(parts[6]);
+            Curve curve = new Curve(type, sca, strW, iter, hue, cVar, opac);
             curve.mainDraw(artwork);
         }
     }
 
-    private Curve getValues( ChoiceBox<String> inputCurve, Slider inputScale, Slider inputIter, Slider inputColor, Slider inputVariance, Slider inputOpacity){
+    private Curve getValues( ChoiceBox<String> inputCurve, Slider inputScale, Slider inputStrokeWidth, Slider inputIter, Slider inputColor, Slider inputVariance, Slider inputOpacity){
 
         int curveType = getCurveTypeNumber( inputCurve.getValue() );
 
-        return new Curve(curveType, getIntValue(inputScale), getIntValue(inputIter), inputColor.getValue(), getIntValue(inputVariance), inputOpacity.getValue() );
+        return new Curve(curveType, getIntValue(inputScale), inputStrokeWidth.getValue(), getIntValue(inputIter), inputColor.getValue(), getIntValue(inputVariance), inputOpacity.getValue() );
     }
 
 
