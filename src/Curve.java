@@ -28,8 +28,6 @@ class Curve {
         opacity = opac;
     }
 
-    // This is for testing whether the GUI passes all the right values
-
     /**
      * Prints out all relevant information for easier debugging.
      */
@@ -52,7 +50,6 @@ class Curve {
             Sierpinski triangle = new Sierpinski();
             triangle.drawTriangle(gc, artwork, iterations, colorHue, cVariance, scale, opacity, strokeW);
         } else if (curveType == 3) {
-            //BITTE DIE NEUE KLASSE CANTOR BENUTZEN!!
             Cantor cantor = new Cantor();
             cantor.drawCantor(gc, artwork, iterations, colorHue, opacity, scale, cVariance, strokeW);
         } else if (curveType == 2) {

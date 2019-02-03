@@ -12,11 +12,12 @@ import javafx.scene.paint.Color;
 
 /**
  * @author Julia Filzinger
+ * This class can show a pop up window for creating a custom new atrwork.
  */
 
 public class PopUpNew {
 
-    public static void open( Easel easel ) {
+    static void open( Easel easel ) {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Create a new artwork");
@@ -93,9 +94,7 @@ public class PopUpNew {
             }
         });
 
-        btnCancel.setOnAction( e -> {
-            window.close();
-        });
+        btnCancel.setOnAction( e -> window.close());
 
         // display window
         Scene scene = new Scene(layout);
@@ -121,10 +120,10 @@ public class PopUpNew {
                     field.getStyleClass().addAll("text-field", "text-input", "fieldAutoFilled");
                     return false;
                 }
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException numEx) {
                 field.getStyleClass().clear();
                 field.getStyleClass().addAll("text-field", "text-input", "fieldError");
-                System.out.println(e);
+                numEx.printStackTrace();
                 return false;
             }
         }
@@ -138,9 +137,9 @@ public class PopUpNew {
             }else{
                 return Math.abs(Integer.parseInt(field.getText()));
             }
-        }catch (NumberFormatException e ){
+        }catch (NumberFormatException numEx ){
             field.getStyleClass().add("fieldError");
-            System.out.println(e);
+            System.out.println("Could not get integer value: "+numEx);
             return 800;
         }
     }

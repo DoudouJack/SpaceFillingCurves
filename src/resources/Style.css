@@ -1,5 +1,6 @@
 /**
  * @author Julia Filzinger
+ * dark mode stylesheet
  */
 
 @font-face {
@@ -35,7 +36,7 @@
 .button{
     -fx-background-color: none;
     -fx-background-radius: 0;
-    -fx-text-fill: #d84315;
+    -fx-text-fill: -fx-warm-800;
     -fx-font-size: 14;
 }
 
@@ -219,5 +220,3 @@
     -fx-text-fill: #bababa;
     -fx-background-color: #2a2a2a;
 }
-
-

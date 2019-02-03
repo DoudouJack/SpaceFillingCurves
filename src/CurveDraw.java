@@ -21,9 +21,9 @@ import java.util.Scanner;
 import javafx.embed.swing.SwingFXUtils;
 
 /**
- * This class' main function launches the application.
- * It displays the Graphical User Interface and can create a new Curve object and save artwork to file
  * @author Julia Filzinger
+ * This class' main function launches the application.
+ * It displays the Graphical User Interface and can create a new Curve object and save the artwork to file
  */
 
 public class CurveDraw extends Application {
@@ -35,14 +35,10 @@ public class CurveDraw extends Application {
         CIRCLES("Circles"),
         KOCH("Koch Curve"),
         RECTCURSIVE ("Rectcursive");
-
-
         private final String curveName;
-
         CurveTypes(String curveName) {
             this.curveName = curveName;
         }
-
         public String getCurveName() {
             return this.curveName;
         }
@@ -55,13 +51,13 @@ public class CurveDraw extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
         // S E T U P   W I N D O W + L A Y O U T
         BorderPane layout = new BorderPane();
         Stage window;
         window = primaryStage;
-        window.setTitle("Draw Curves");
+        window.setTitle("CurveDraw");
         window.getIcons().add(new Image( CurveDraw.class.getResourceAsStream("/resources/icons/appIcon.png")) );
 
         // B U I L D   C O N T R O L S
@@ -218,9 +214,7 @@ public class CurveDraw extends Application {
             }
         });
 
-        btnNewCustom.setOnAction( e -> {
-            PopUpNew.open(easel);
-        });
+        btnNewCustom.setOnAction( e -> PopUpNew.open(easel));
 
         // READ FROM FILE
         btnFromFile.setOnAction( e -> {
@@ -233,11 +227,10 @@ public class CurveDraw extends Application {
 
             File file = fileChooser.showOpenDialog(primaryStage);
             if (file != null) {
-                // TODO: put execution code here
                 System.out.println( "Read in file: " + file.getName() );
                 try {
                     readFromFile(file, easel.getArtwork());
-                } catch (FileNotFoundException e1) {
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
@@ -298,25 +291,31 @@ public class CurveDraw extends Application {
     }
 
     /**
-     * Reads a text file with a 'type/scale/iterations/hue/variance/opacity' format and then proceeds to draw as many curves as the file has, all separated by line breaks.
+     * Reads a text file with a 'type/scale/strokeWidth/iterations/hue/variance/opacity' format and then proceeds to draw as many curves as the file has, all separated by line breaks.
      * @author Fee Di Mascio
      * */
-    private void readFromFile(File file, Artwork artwork) throws FileNotFoundException {
-        String ln;
-        String[] parts;
-        Scanner sc = new Scanner(file);
-        while(sc.hasNextLine()){
-            ln = sc.nextLine();
-            parts = ln.split("/");
-            int type = Integer.parseInt(parts[0]);
-            int sca = Integer.parseInt(parts[1]);
-            double strW = Double.parseDouble(parts[2]);
-            int iter = Integer.parseInt(parts[3]);
-            double hue = Double.parseDouble(parts[4]);
-            int cVar = Integer.parseInt(parts[5]);
-            double opac = Double.parseDouble(parts[6]);
-            Curve curve = new Curve(type, sca, strW, iter, hue, cVar, opac);
-            curve.mainDraw(artwork);
+    private void readFromFile(File file, Artwork artwork) {
+        try {
+            String ln;
+            String[] parts;
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                ln = sc.nextLine();
+                parts = ln.split("/");
+                int type = Integer.parseInt(parts[0]);
+                int sca = Integer.parseInt(parts[1]);
+                double strW = Double.parseDouble(parts[2]);
+                int iter = Integer.parseInt(parts[3]);
+                double hue = Double.parseDouble(parts[4]);
+                int cVar = Integer.parseInt(parts[5]);
+                double opac = Double.parseDouble(parts[6]);
+                Curve curve = new Curve(type, sca, strW, iter, hue, cVar, opac);
+                curve.mainDraw(artwork);
+            }
+        }
+        catch(Exception e){
+            System.out.println("File could not be interpreted: "+ e);
+            AlertBox.display("problem in file", "There was an error with your file. Format has to be like 'type/scale/strokeWidth/iterations/hue/variance/opacity' with curves separated by newlines.");
         }
     }
 }

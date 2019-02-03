@@ -5,6 +5,8 @@ import javafx.scene.paint.Color;
 
 /**
  * @author Julia Filzinger
+ * This is what we save as image file on "save to file".
+ * Artwork can hold several Canvases like layers.
  */
 
 
@@ -56,10 +58,6 @@ public class Artwork extends Group{
         setBackground( bgColor );
     }
 
-    public Artwork( Artwork template ){
-
-    }
-
     // getters and setters
     public int getNumberOfCanvases() {
         return numberOfCanvases;
@@ -69,7 +67,7 @@ public class Artwork extends Group{
         this.numberOfCanvases = numberOfCanvases;
     }
 
-    public int getWidth() {
+    int getWidth() {
         return width;
     }
 
@@ -77,7 +75,7 @@ public class Artwork extends Group{
         this.width = width;
     }
 
-    public int getHeight() {
+    int getHeight() {
         return height;
     }
 
@@ -85,32 +83,18 @@ public class Artwork extends Group{
         this.height = height;
     }
 
-    public Color getBgColor(){
+    Color getBgColor(){
         return bgColor;
     }
 
     // other Methods
-    public void setBackground( Color color ){
+    private void setBackground( Color color ){
         this.bgColor = color;
         canvasList[0].getGraphicsContext2D().setFill( color );
         canvasList[0].getGraphicsContext2D().fillRect(0,0, this.width, this.height);
     }
 
-    public GraphicsContext getCurrentLayer(){
+    GraphicsContext getCurrentLayer(){
         return canvasList[0].getGraphicsContext2D();
     }
-
-    // can be deleted...
-   /* public void clearAll(){
-        for(int i = 1; i <= this.numberOfCanvases; i++){
-            //canvasList[i].getGraphicsContext2D().clearRect(0, 0, this.width, this.height);
-            //canvasList[i] = null;
-            //this.getChildren().remove(canvasList[i]);
-        }
-
-        canvasList[0] = new Canvas(width, height);
-        canvasList[1] = new Canvas(width, height);
-        this.getChildren().addAll(canvasList[0], canvasList[1] );
-        setBackground( bgColor );
-    }*/
 }
