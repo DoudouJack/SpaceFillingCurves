@@ -218,6 +218,7 @@ public class gui extends Application {
     }
 
     private void readFromFile(File file, Artwork artwork) throws FileNotFoundException {
+        //Reads multiple curves in the type/scale/iterations/hue/variance/opacity format and then draws them.
         String ln;
         String[] parts;
         Scanner sc = new Scanner(file);
@@ -234,10 +235,6 @@ public class gui extends Application {
             curve.mainDraw(artwork);
         }
     }
-
-
-
-
 
     private Curve getValues( ChoiceBox<String> inputCurve, Slider inputScale, Slider inputIter, Slider inputColor, Slider inputVariance, Slider inputOpacity){
 

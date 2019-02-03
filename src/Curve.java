@@ -1,6 +1,6 @@
 import javafx.scene.canvas.GraphicsContext;
 
-public class Curve {
+class Curve {
     private int scale;
     private int iterations;
     private int curveType;
@@ -8,11 +8,7 @@ public class Curve {
     private int cVariance;
     private double opacity;
 
-// write a function that triggers the draw function depending on curveType (int)
-    // depending on the choice, create new object from selected type
-    // then draw
-
-    Curve(int type, int sca, int iter, double colHue, int cVar, double opac) { //NOTE: Remember to re-add color handling. TODO: Determine how to implement type handling via subclasses.
+    Curve(int type, int sca, int iter, double colHue, int cVar, double opac) {
         curveType = type;
         scale = sca;
         iterations = iter;
@@ -21,61 +17,15 @@ public class Curve {
         opacity = opac;
     }
 
-    /*
-    TODO: Adapt to changed set of attributes after setting up the GUI
-    public Curve readFromFile() throws FileNotFoundException { // TODO: Implement a way to read multiple curves, presumably with a loop. Color handling.
-        String ln;
-        String[] parts;
-        Scanner sc = new Scanner( new File("text.in") );
-        ln = sc.nextLine();
-        parts = ln.split("/");
-        int x = Integer.parseInt(parts[0]);
-        int y = Integer.parseInt(parts[1]);
-        float trans = Float.parseFloat(parts[2]);
-        int sca = Integer.parseInt(parts[3]);
-        int iter = Integer.parseInt(parts[4]);
-        int type = Integer.parseInt(parts[5]);
-        return new Curve(x, y, trans, sca, iter, type);
-    }
-    */
-    public void draw() { //To be implemented within each subclass.
-        //TODO: Consider whether the Curve class should be abstract (in which case the readFromFile() method would need to be implemented elsewhere) or if an interface would be appropriate.
-    }
-
     // This is for testing whether the GUI passes all the right values
     void printValues() {
-        System.out.printf(
-                "Type: %d \nScale: %d \nIterations: %d \nColorHue: %f \nColor Variance: %d \nOpacity: %f \n",
-              curveType, scale, iterations, colorHue, cVariance, opacity
-        );
+        System.out.printf("Type: %d \nScale: %d \nIterations: %d \nColorHue: %f \nColor Variance: %d \nOpacity: %f \n", curveType, scale, iterations, colorHue, cVariance, opacity);
     }
-// Testing the usage of a branch.
-/*
-    void testDrawing(Artwork artwork){
-        GraphicsContext gc = artwork.getCurrentLayer();
-        xPos = 20.0;
-        yPos = 600.0;
-        gc.setLineWidth(3);
-        //drawBranch(gc, iterations, xPos, yPos, scale, colorHue);
-        CantorSet a = new CantorSet();
-        a.cantor(gc, xPos, yPos, iterations, colorHue, scale);
-    }
-*/
-
-    /*
-    void test2Drawing(Artwork artwork){
-
-        GraphicsContext gc = artwork.getCurrentLayer();
-        xPos = 600.0;
-        yPos = 600.0;
-        SierpinskiTriangleOLD triangle = new SierpinskiTriangleOLD();
-        triangle.drawTriangle(gc, xPos, yPos, iterations, colorHue, scale);
-    }
-    */
-
-
     // BITTE KEINE XPOS UND YPOS BENUTZEN DA DIE FUNKTIONEN DRAW SELBER CHECKEN, DASS DAS OBJEKT IN DER MITTE
     // SO GROSS WIE MOGLICH GEZEICHNET WIRD!
+    // write a function that triggers the draw function depending on curveType (int)
+    // depending on the choice, create new object from selected type
+    // then draw
     void mainDraw(Artwork artwork) {
         GraphicsContext gc = artwork.getCurrentLayer();
         if (curveType == 0) {
