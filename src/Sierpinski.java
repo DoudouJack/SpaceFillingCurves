@@ -19,7 +19,6 @@ public class Sierpinski {
 
     void drawTriangle(GraphicsContext gc, Artwork artwork, int i, double hue, int variance, double scale, double opacity) {
         this.gc = gc;
-
         Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
         gc.setStroke(strColor);
         gc.setLineWidth(3);
@@ -112,8 +111,6 @@ public class Sierpinski {
         gc.strokeLine((int)x1, (int)y1, (int)x3, (int)y3);
         gc.strokeLine((int)x2, (int)y2, (int)x3, (int)y3);
     }
-
-
     public void drawCurrentLevel(int iter){
         drawLevel0();
         //Call the recursive function that'll draw all the rest. The 3 corners of it are always the centers of sides, so they're averages
@@ -131,16 +128,12 @@ public class Sierpinski {
                     );
         }
     }
-
-
     void subTriangle(int iter, double x1, double x2, double x3, double y1, double y2, double y3)
     {
-
         //Draw the 3 sides as lines
         gc.strokeLine(x1, y1, x2, y2);
         gc.strokeLine(x1, y1, x3, y3);
         gc.strokeLine(x2, y2, x3, y3);
-
         if (iter > 1) {
             //Smaller triangle 1
             subTriangle
@@ -154,8 +147,6 @@ public class Sierpinski {
                             (x1 + x2) / 2, //x coordinate of third corner
                             (y1 + y2) / 2  //y coordinate of third corner
                     );
-
-
             //Smaller triangle 2
             subTriangle
                     (
@@ -188,10 +179,8 @@ public class Sierpinski {
                 double newy2 = (y1 + y3) / 2; //y coordinate of second corner
                 double newx3 = (x2 + x3) / 2; //x coordinate of third corner
                 double newy3 = (y2 + y3) / 2; //y coordinate of third corner
-
         double[] xcoord = new double[]{newx1,newx2,newx3};
         double[] ycoord = new double[]{newy1,newy2,newy3};
-
         gc.strokePolygon(xcoord, ycoord, 3);*/
 
 /*
@@ -201,7 +190,6 @@ public class Sierpinski {
             //Smaller triangle 1
             subTriangle
                     (
-
                             iter-1, //Number of recursions for the next call increased with 1
                             (x1 + x2) / 2 + (x2 - x3) / 2, //x coordinate of first corner
                             (y1 + y2) / 2 + (y2 - y3) / 2, //y coordinate of first corner
@@ -213,7 +201,6 @@ public class Sierpinski {
             //Smaller triangle 2
             subTriangle
                     (
-
                             iter-1, //Number of recursions for the next call increased with 1
                             (x3 + x2) / 2 + (x2 - x1) / 2, //x coordinate of first corner
                             (y3 + y2) / 2 + (y2 - y1) / 2, //y coordinate of first corner
@@ -225,7 +212,6 @@ public class Sierpinski {
             //Smaller triangle 3
             subTriangle
                     (
-
                             iter-1, //Number of recursions for the next call increased with 1
                             (x1 + x3) / 2 + (x3 - x2) / 2, //x coordinate of first corner
                             (y1 + y3) / 2 + (y3 - y2) / 2, //y coordinate of first corner
@@ -242,14 +228,13 @@ public class Sierpinski {
 
 
 
-        //subTriangle(i,x1,x2,x3,y1,y2,y3);
-        //drawCurrentLevel(i);
-        //drawLevel0();
-        //displayTriangles(0, A, B, C);
+    //subTriangle(i,x1,x2,x3,y1,y2,y3);
+    //drawCurrentLevel(i);
+    //drawLevel0();
+    //displayTriangles(0, A, B, C);
 
         /*double[] xcoord = new double[]{x1, x2, x3};
         double[] ycoord = new double[]{y1, y2, y3};
-
         System.out.printf(
                 "x1: %f \nx2: %f \nx3 %f \ny1 %f \ny2 %f \ny3 %f \na %f \nspacing %f \n"
                 , x1, x2, x3, y1, y2, y3, a, spacing

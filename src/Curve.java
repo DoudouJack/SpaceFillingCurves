@@ -1,61 +1,18 @@
-//This is a skeleton as the program is a work in progress. 
-import javafx.scene.paint.Color;
-import javafx.scene.canvas.*;
-import javafx.scene.shape.Circle;
-
-/* 
-	This class is untested. Tests will commence elsewhen. Refer to commentary for information on accounted for issues.
-*/
+import javafx.scene.canvas.GraphicsContext;
 
 public class Curve {
-
-
-    /* private float color;
-        TODO: Determine handling of color with the group. */
-    private double xPos; //Edited positions so they're double.
-    private double yPos;
     private int scale;
     private int iterations;
     private int curveType;
     private double colorHue;
     private int cVariance;
     private double opacity;
-    private Artwork artwork;
-//    private Color convergenceColor = Color.WHITE;
-//    private ColorSchema colorSchema = ColorSchema.GREEN;
 
-
-/*
-    public enum ColorSchema {
-
-        GREEN, RED, YELLOW, BLUE, CYAN, MAGENTA
-    }
-
-    public void setConvergenceColor(Color convergenceColor) {
-        this.convergenceColor = convergenceColor;
-    }
-
-    public Color getConvergenceColor() {
-        return convergenceColor;
-    }
-
-    public ColorSchema getColorSchema() {
-        return colorSchema;
-    }
-
-    public void setColorSchema(ColorSchema colorSchema) {
-        this.colorSchema = colorSchema;
-    }
-*/
-
-
-// write a function that triggers the drawfunction depending on curveType (int)
+// write a function that triggers the draw function depending on curveType (int)
     // depending on the choice, create new object from selected type
     // then draw
 
-    Curve(double x, double y, int type, int sca, int iter, double colHue, int cVar, double opac) { //NOTE: Remember to re-add color handling. TODO: Determine how to implement type handling via subclasses.
-        xPos = x;
-        yPos = y;
+    Curve(int type, int sca, int iter, double colHue, int cVar, double opac) { //NOTE: Remember to re-add color handling. TODO: Determine how to implement type handling via subclasses.
         curveType = type;
         scale = sca;
         iterations = iter;
@@ -88,8 +45,8 @@ public class Curve {
     // This is for testing whether the GUI passes all the right values
     void printValues() {
         System.out.printf(
-                "xPos: %f \nxPos: %f \nType: %d \nScale: %d \nIterations: %d \nColorHue: %f \nColor Variance: %d \nOpacity: %f \n"
-                , xPos, yPos, curveType, scale, iterations, colorHue, cVariance, opacity
+                "Type: %d \nScale: %d \nIterations: %d \nColorHue: %f \nColor Variance: %d \nOpacity: %f \n",
+              curveType, scale, iterations, colorHue, cVariance, opacity
         );
     }
 // Testing the usage of a branch.

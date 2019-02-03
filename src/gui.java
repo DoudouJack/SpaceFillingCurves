@@ -1,26 +1,18 @@
-import javafx.application.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.*;
 import javafx.scene.control.*;
-import javafx.stage.*;
-import javafx.scene.shape.Polygon;
-
-import java.awt.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import java.io.File;
-import java.lang.Math;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 
 public class gui extends Application {
-    Curve curve;
-
     public enum CurveTypes {
         SIERPINSKI("Sierpinski Triangle"),
         SPIRAL("Spiral"),
@@ -184,15 +176,7 @@ public class gui extends Application {
                 Curve curve = getValues( inputCurve, inputScale, inputIter, inputColor,  cVariance, inputOpacity);
                 // call test methods:
                 curve.printValues();
-                //curve.testDrawing( easel.getArtwork() );
-            //Polygon triangle = new Polygon();
-            //triangle.getPoints().addAll(50.0, 0.0,  0.0, 50.0,100.0, 50.0);
-            //triangle.setFill(Color.WHITE);
-            //triangle.setStroke( strColor );
-            //curve.test2Drawing(easel.getArtwork());
             curve.mainDraw(easel.getArtwork());
-
-
         });
 
         btnClear.setOnAction( e -> {
@@ -222,33 +206,44 @@ public class gui extends Application {
                 // TODO: put execution code here
                 // read in file, draw curve...
                 System.out.println( "File: " + file.getName() );
+                try {
+                    readFromFile(file, easel.getArtwork());
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
 
-
-        //for later: COLOR PICKER
-//        private ColorPicker createConvergenceColorPicker() {
-//            ColorPicker colorPicker = new ColorPicker(Color.WHITE);
-//
-//            colorPicker.valueProperty().addListener(new ChangeListener<Color>() {
-//                @Override
-//                public void changed(ObservableValue ov, Color oldColorSchema, Color newColorSchema) {
-//                    curve.setConvergenceColor(newColorSchema);
-//                    paintSet(canvas.getGraphicsContext2D(), curve);
-//                }
-//            });
-//
-//            return colorPicker;
-//        }
-
     }
+
+    private void readFromFile(File file, Artwork artwork) throws FileNotFoundException {
+        String ln;
+        String[] parts;
+        Scanner sc = new Scanner(file);
+        while(sc.hasNextLine()){
+            ln = sc.nextLine();
+            parts = ln.split("/");
+            int type = Integer.parseInt(parts[0]);
+            int sca = Integer.parseInt(parts[1]);
+            int iter = Integer.parseInt(parts[2]);
+            double hue = Double.parseDouble(parts[3]);
+            int cVar = Integer.parseInt(parts[4]);
+            double opac = Double.parseDouble(parts[5]);
+            Curve curve = new Curve(type, sca, iter, hue, cVar, opac);
+            curve.mainDraw(artwork);
+        }
+    }
+
+
+
+
 
     private Curve getValues( ChoiceBox<String> inputCurve, Slider inputScale, Slider inputIter, Slider inputColor, Slider inputVariance, Slider inputOpacity){
 
         int curveType = getCurveTypeNumber( inputCurve.getValue() );
 
-        return new Curve(0, 0, curveType, getIntValue(inputScale), getIntValue(inputIter), inputColor.getValue(), getIntValue(inputVariance), inputOpacity.getValue() );
+        return new Curve(curveType, getIntValue(inputScale), getIntValue(inputIter), inputColor.getValue(), getIntValue(inputVariance), inputOpacity.getValue() );
     }
 
 
