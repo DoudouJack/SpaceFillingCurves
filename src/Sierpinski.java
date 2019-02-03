@@ -14,13 +14,12 @@ public class Sierpinski {
         this.gc = gc;
         Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
         gc.setStroke(strColor);
-        gc.setLineWidth(3);
+        gc.setLineWidth(1);
         gc.setFill(strColor);
 
         double squareSize = Math.min(artwork.getWidth(), artwork.getHeight());
 
         spacing = squareSize * 0.025;
-
 
 
         x1 = (artwork.getWidth() / 2 - squareSize / 2 + spacing);
@@ -51,37 +50,19 @@ public class Sierpinski {
 
     void displayTriangles(int iter, Point2D a, Point2D b, Point2D c, double hue, int variance, double opacity){
 
-        if (variance == 1) {
+        gc.strokeLine(a.getX(), a.getY(), b.getX(), b.getY());
+        gc.strokeLine(a.getX(), a.getY(), c.getX(), c.getY());
+        gc.strokeLine(b.getX(), b.getY(), c.getX(), c.getY());
 
+        double newColor = hue + variance;
 
+        Color color = Color.hsb(newColor, 1.0, 1.0, opacity / 100);
+        gc.setStroke(color);
 
-
-            gc.strokeLine(a.getX(), a.getY(), b.getX(), b.getY());
-            gc.strokeLine(a.getX(), a.getY(), c.getX(), c.getY());
-            gc.strokeLine(b.getX(), b.getY(), c.getX(), c.getY());
-
-            double newColor = hue - 50;
-            Color color = Color.hsb(newColor, 1.0, 1.0, opacity / 100);
-            gc.setStroke(color);
-
-            if (iter > 1) {
-
-                displayTriangles(iter - 1, a, a.midpoint(b), a.midpoint(c), newColor, variance, opacity);
-                displayTriangles(iter - 1, b, a.midpoint(b), b.midpoint(c), newColor, variance, opacity);
-                displayTriangles(iter - 1, c, c.midpoint(b), a.midpoint(c), newColor, variance, opacity);
-            }
-
-        } else {
-            double newColor = hue;
-            gc.strokeLine(a.getX(), a.getY(), b.getX(), b.getY());
-            gc.strokeLine(a.getX(), a.getY(), c.getX(), c.getY());
-            gc.strokeLine(b.getX(), b.getY(), c.getX(), c.getY());
-
-            if (iter > 1) {
-                displayTriangles(iter - 1, a, a.midpoint(b), a.midpoint(c), newColor, variance, opacity);
-                displayTriangles(iter - 1, b, a.midpoint(b), b.midpoint(c), newColor, variance, opacity);
-                displayTriangles(iter - 1, c, c.midpoint(b), a.midpoint(c), newColor, variance, opacity);
-            }
+        if (iter > 1) {
+            displayTriangles(iter - 1, a, a.midpoint(b), a.midpoint(c), newColor, variance, opacity);
+            displayTriangles(iter - 1, b, a.midpoint(b), b.midpoint(c), newColor, variance, opacity);
+            displayTriangles(iter - 1, c, c.midpoint(b), a.midpoint(c), newColor, variance, opacity);
         }
     }
 }

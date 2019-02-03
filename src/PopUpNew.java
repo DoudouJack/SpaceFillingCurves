@@ -10,7 +10,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
-import java.awt.*;
+/**
+ * @author Julia Filzinger
+ */
 
 public class PopUpNew {
 
@@ -76,6 +78,8 @@ public class PopUpNew {
         layout.setPadding(new Insets( 40, 25, 40, 25));
         layout.getChildren().addAll(size, color, warning , buttons);
 
+        btnCreate.setDefaultButton(true);
+
         // button functionality
         btnCreate.setOnAction( e -> {
             boolean check1 = isInt(inputHeight);
@@ -101,22 +105,39 @@ public class PopUpNew {
     }
 
     private static boolean isInt( TextField field ){
-        try{
-            int Int = Integer.parseInt( field.getText() );
-            field.getStyleClass().clear();
-            field.getStyleClass().addAll("text-field","text-input", "fieldCorrected");
+        if( field.getText().equals("set to max value: 800") ) {
             return true;
-        }catch (NumberFormatException e ){
-            field.getStyleClass().clear();
-            field.getStyleClass().addAll("text-field","text-input", "fieldError");
-            System.out.println(e);
-            return false;
+        }
+        else {
+            try {
+                int value = Integer.parseInt(field.getText());
+                if (value <= 800) {
+                    field.getStyleClass().clear();
+                    field.getStyleClass().addAll("text-field", "text-input", "fieldCorrected");
+                    return true;
+                } else {
+                    field.getStyleClass().clear();
+                    field.setText("set to max value: 800");
+                    field.getStyleClass().addAll("text-field", "text-input", "fieldAutoFilled");
+                    return false;
+                }
+            } catch (NumberFormatException e) {
+                field.getStyleClass().clear();
+                field.getStyleClass().addAll("text-field", "text-input", "fieldError");
+                System.out.println(e);
+                return false;
+            }
         }
     }
 
     private static int getIntValue( TextField field ){
+
         try{
-            return Integer.parseInt(field.getText());
+            if( field.getText().equals("set to max value: 800") ){
+                return 800;
+            }else{
+                return Math.abs(Integer.parseInt(field.getText()));
+            }
         }catch (NumberFormatException e ){
             field.getStyleClass().add("fieldError");
             System.out.println(e);

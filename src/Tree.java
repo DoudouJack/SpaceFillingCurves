@@ -11,7 +11,7 @@ class Tree {
         this.gc = gc;
         Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
         gc.setStroke(strColor);
-        gc.setLineWidth(3);
+        gc.setLineWidth(2);
         gc.setFill(strColor);
         x1 = artwork.getWidth()/2;
         y1 = 800;
@@ -25,19 +25,13 @@ class Tree {
         if (i == 0) return;
         double x2 = (x1 + (int) (Math.cos(Math.toRadians(angle)) * i * 10.0));
         double y2 = (y1 + (int) (Math.sin(Math.toRadians(angle)) * i * 10.0));
-        if (variance == 1) {
-            double newColor = hue - 50;
-            Color color = Color.hsb(newColor, 1.0, 1.0, opacity / 100);
-            gc.setStroke(color);
-            gc.strokeLine(x1, y1, x2, y2);
-            displayTrees(i - 1, x2, y2, angle - 20, newColor, variance,  opacity);
-            displayTrees(i - 1, x2, y2, angle + 20, newColor, variance, opacity);
-        } else {
-            double newColor = hue;
-            gc.strokeLine(x1, y1, x2, y2);
-            displayTrees(i - 1, x2, y2, angle - 20, newColor, variance,  opacity);
-            displayTrees(i - 1, x2, y2, angle + 20, newColor, variance, opacity);
-        }
 
+        double newColor = hue + variance;
+        Color color = Color.hsb(newColor, 1.0, 1.0, opacity / 100);
+        gc.setStroke(color);
+        gc.strokeLine(x1, y1, x2, y2);
+        displayTrees(i - 1, x2, y2, angle - 20, newColor, variance,  opacity);
+        displayTrees(i - 1, x2, y2, angle + 20, newColor, variance, opacity);
     }
-    }
+
+}

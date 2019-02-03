@@ -45,6 +45,7 @@ public class Koch {
         y4 = y1 + 2 * deltaY /3;
 
 
+
         displayKochs(i-1, x1, y1, x2, y2, hue, opacity, variance);
         displayKochs(i-1, x2, y2, x3, y3, hue, opacity, variance);
         displayKochs(i-1, x3, y3, x4, y4, hue, opacity, variance);

@@ -1,14 +1,11 @@
-import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+/**
+ * @author Julia Filzinger
+ */
 
 public class Easel extends  StackPane {
     private Artwork artwork;
-
-  /* to be deleted?
-    public Easel(Artwork artwork) {
-        this.artwork = artwork;
-        this.getChildren().add( artwork );
-    }*/
 
     public Easel() {
         Artwork newArtwork = new Artwork();

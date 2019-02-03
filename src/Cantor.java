@@ -46,23 +46,12 @@ public class Cantor {
         //draw right line
         gc.strokeLine(x2-newLineLength,y,x2,y);
 
-            if (variance == 1){
-                double newColor = hue - 50;
-                Color color = Color.hsb(newColor, 1.0, 1.0, opacity / 100);
-                gc.setStroke(color);
-                if (iter > 0){
-                    displayCantors(iter-1, x1, x1+newLineLength, y, variance, newColor, opacity);
-                    displayCantors(iter-1, x2-newLineLength, x2, y, variance, newColor, opacity);
-                }
-            } else {
-                double newColor = hue;
-                if (iter > 0){
-                    displayCantors(iter-1, x1, x1+newLineLength, y, variance, newColor, opacity);
-                    displayCantors(iter-1, x2-newLineLength, x2, y, variance, newColor, opacity);
-                }
-            }
-
-
-
+        double newColor = hue + variance;
+        Color color = Color.hsb(newColor, 1.0, 1.0, opacity / 100);
+        gc.setStroke(color);
+        if (iter > 0){
+            displayCantors(iter-1, x1, x1+newLineLength, y, variance, newColor, opacity);
+            displayCantors(iter-1, x2-newLineLength, x2, y, variance, newColor, opacity);
+        }
     }
 }

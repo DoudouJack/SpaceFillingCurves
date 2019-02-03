@@ -6,6 +6,10 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * @author Julia Filzinger
+ */
+
 public class ConfirmationBox {
 
     static boolean answer;

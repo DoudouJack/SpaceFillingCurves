@@ -3,15 +3,22 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
+ * This class' main function launches the application.
+ * It displays the Graphical User Interface and can create a new Curve object
  * @author Julia Filzinger
  */
 
@@ -48,7 +55,6 @@ public class gui extends Application {
 
         // S E T U P   W I N D O W + L A Y O U T
         BorderPane layout = new BorderPane();
-        //easel.setStyle("-fx-background-color: black");
         Stage window = new Stage();
         window = primaryStage;
         window.setTitle("Space Filling Curves");
@@ -105,7 +111,7 @@ public class gui extends Application {
         // input iterations
         VBox setIter = new VBox(10);
         Label labelIter = new Label("iterations");
-        Slider inputIter = new Slider(1, 20, 1);
+        Slider inputIter = new Slider(1, 12, 10);
         inputIter.setShowTickLabels(true);
         inputIter.setShowTickMarks(true);
         inputIter.setMajorTickUnit(200);
@@ -125,7 +131,7 @@ public class gui extends Application {
         // input color variance
         VBox setVariance = new VBox(10);
         Label labelVariance = new Label("color variance");
-        Slider cVariance = new Slider(0, 1, 0);
+        Slider cVariance = new Slider(0, 40, 20);
         cVariance.setMajorTickUnit(5);
         setVariance.getChildren().addAll(labelVariance, cVariance);
 
@@ -159,7 +165,8 @@ public class gui extends Application {
         controls.getChildren().addAll(topBtns, setCurve, setScale, setIter, setColor, setVariance, setOpacity, bottomBtns);
 
         Easel easel = new Easel(); // This will hold the artwork group (of canvases)
-        easel.setStyle("-fx-background-color: #111111");
+        easel.setStyle("-fx-background-color: #151515");
+
         easel.setMinWidth(800);
         easel.setMinHeight(800);
 

@@ -1,3 +1,7 @@
+/**
+ * @author Julia Filzinger
+ */
+
 @font-face {
     src: url('fonts/PT_Sans-Web-Regular.ttf');
 }
@@ -18,6 +22,7 @@
     -fx-warm-400: #FF7043;
 
     -fx-warning-1: #C2185B;
+    -fx-warning-2: #AFB42B;
     -fx-checked-1: #689F38;
     -fx-neutral-light: #bababa;
 }
@@ -43,6 +48,10 @@
 .text-field.fieldError{
     -fx-border-color: -fx-warning-1;
     -fx-text-fill: -fx-warning-1;
+}
+.text-field.fieldAutoFilled{
+    -fx-border-color: -fx-warning-2;
+    -fx-text-fill: -fx-warning-2;
 }
 
 .text-field.fieldCorrected{

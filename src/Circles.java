@@ -22,16 +22,12 @@ public class Circles {
 
         Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
         gc.setStroke(strColor);
-        gc.setLineWidth(3);
+        gc.setLineWidth(2);
         gc.setFill(strColor);
-
-
 
         gc.strokeLine(0, yMid, artwork.getWidth()-1, yMid);
         gc.strokeOval(xMid-radius,yMid-radius,radius*2,radius*2);
         displayCircles(i-1,xMid,yMid,radius,hue,variance,opacity);
-
-
 
     }
 
@@ -45,34 +41,19 @@ public class Circles {
         double xRight = xMid + radius;
         double yRight = yMid;
 
-        if (variance == 1) {
+        double newColor = hue + variance;
+        Color color = Color.hsb(newColor, 1.0, 1.0, opacity / 100);
+        gc.setStroke(color);
 
-            double newColor = hue - 50;
-            Color color = Color.hsb(newColor, 1.0, 1.0, opacity / 100);
-            gc.setStroke(color);
+        //draw circle to the left
+        gc.strokeOval(xLeft - radius / 2, yLeft - radius / 2, radius, radius);
 
-            //draw circle to the left
-            gc.strokeOval(xLeft - radius / 2, yLeft - radius / 2, radius, radius);
-
-            //draw circle to the right
-            gc.strokeOval(xRight - radius / 2, yRight - radius / 2, radius, radius);
+        //draw circle to the right
+        gc.strokeOval(xRight - radius / 2, yRight - radius / 2, radius, radius);
 
 
-            displayCircles(i - 1, xLeft, yLeft, radius / 2, newColor, variance, opacity);
-            displayCircles(i - 1, xRight, yRight, radius / 2, newColor, variance, opacity);
-        } else {
-            double newColor = hue;
-            gc.strokeOval(xLeft - radius / 2, yLeft - radius / 2, radius, radius);
-
-            //draw circle to the right
-            gc.strokeOval(xRight - radius / 2, yRight - radius / 2, radius, radius);
-
-
-            displayCircles(i - 1, xLeft, yLeft, radius / 2, newColor, variance, opacity);
-            displayCircles(i - 1, xRight, yRight, radius / 2, newColor, variance, opacity);
-
-        }
-
+        displayCircles(i - 1, xLeft, yLeft, radius / 2, newColor, variance, opacity);
+        displayCircles(i - 1, xRight, yRight, radius / 2, newColor, variance, opacity);
     }
 
 }

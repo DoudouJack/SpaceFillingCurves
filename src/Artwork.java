@@ -3,6 +3,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+/**
+ * @author Julia Filzinger
+ */
+
 
 public class Artwork extends Group{
     private int numberOfCanvases;

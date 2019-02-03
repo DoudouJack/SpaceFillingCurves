@@ -13,9 +13,7 @@ class Rectcursive {
      * @param h Height of the rectangle.
      */
     void drawRect(GraphicsContext gc, double hue, double opacity, int variance, int iterations, double x, double y, double w, double h) {
-        if (variance == 1){
-            hue = hue-50;
-        }
+        hue = hue + variance;
         Color strColor = Color.hsb(hue, 1.0, 1.0, opacity / 100);
         gc.setStroke(strColor);
         gc.setLineWidth(3);
@@ -23,7 +21,7 @@ class Rectcursive {
         gc.strokeRect(x, y, w, h);
 
         if(iterations != 0){
-            drawRect(gc, hue, opacity, variance, iterations-1, x+20, y+20, w-20, h-20);
-        }
+        drawRect(gc, hue, opacity, variance, iterations-1, x+20, y+20, w-20, h-20);
     }
+}
 }
