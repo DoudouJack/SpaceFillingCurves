@@ -1,18 +1,23 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+/**
+ * @author Edouard Jacques
+ * */
+
 class Koch {
     private GraphicsContext gc;
     private double x1, y1, x5, y5;
 
 
     void drawKoch(GraphicsContext gc, Artwork artwork, int i, double hue, double scale, double opacity, int variance){
+        if (i>10) { i = 10; }
+
         this.gc = gc;
         Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
         gc.setStroke(strColor);
         gc.setLineWidth(3);
         gc.setFill(strColor);
-
 
         x1 = 10;
         y1 = artwork.getHeight()/3.0*2.0;
@@ -24,7 +29,6 @@ class Koch {
         } else {
             displayKochs(i, x1, y1, x5, y5, hue, opacity, variance, gc);
         }
-
 
     }
 

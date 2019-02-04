@@ -12,6 +12,8 @@ class KochSnowflake extends Koch{
 
 
     void drawKochSnowflake(GraphicsContext gc, Artwork artwork, int i, double hue, double scale, double opacity, int variance, double strokeW){
+        if (i>10) { i = 10; }
+
         this.gc = gc;
         Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
         gc.setStroke(strColor);

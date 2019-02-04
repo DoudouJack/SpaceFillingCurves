@@ -3,6 +3,10 @@ import javafx.scene.paint.Color;
 
 import javafx.geometry.Point2D;
 
+/**
+ * @author Edouard Jacques
+ */
+
 class Sierpinski {
 
     private GraphicsContext gc;
@@ -11,6 +15,8 @@ class Sierpinski {
     private double spacing, a;
 
     void drawTriangle(GraphicsContext gc, Artwork artwork, int i, double hue, int variance, double scale, double opacity, double stroke) {
+        if (i>12) { i = 12; }
+
         this.gc = gc;
         Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
         gc.setStroke(strColor);
@@ -21,7 +27,6 @@ class Sierpinski {
 
         spacing = squareSize * 0.025;
 
-
         x1 = (artwork.getWidth() / 2.0 - squareSize / 2 + spacing);
         y1 = (artwork.getHeight() / 2.0 + squareSize / 2 - spacing * 2);
         x2 = (artwork.getWidth() / 2.0 + squareSize / 2 - spacing);
@@ -29,8 +34,6 @@ class Sierpinski {
         y2 = y1;
         x3 = x1 + a / 2;
         y3 = y1 - (Math.sqrt(Math.pow(a, 2) - Math.pow(a / 2, 2)));
-
-        //double transformation = scale*0.025;
 
             Point2D A = new Point2D(x1 * scale-(scale-1)*400, y1 * scale-(scale-1)*400);
             Point2D B = new Point2D(x2 * scale-(scale-1)*400, y2 * scale-(scale-1)*400);

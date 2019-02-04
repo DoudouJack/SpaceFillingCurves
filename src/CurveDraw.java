@@ -151,7 +151,7 @@ public class CurveDraw extends Application {
         // input stroke width
         VBox setStrokeWidth = new VBox(10);
         Label labelStroke = new Label("stroke width");
-        Slider inputStrokeWidth = new Slider(0.5, 5, 1);
+        Slider inputStrokeWidth = new Slider(0.5, 8, 1);
         inputStrokeWidth.setMajorTickUnit(0.5);
         inputStrokeWidth.setMinorTickCount(0);
         inputStrokeWidth.setShowTickMarks(true);

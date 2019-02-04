@@ -1,6 +1,11 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+/**
+ * @author Edouard Jacques
+ * */
+
+
 public class Circles {
 
     GraphicsContext gc;
