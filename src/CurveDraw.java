@@ -32,7 +32,7 @@ public class CurveDraw extends Application {
         TREE("Tree"),
         KOCH2("Koch Snowflake"),
         KOCH("Koch Curve"),
-        CIRCLES("Circles"),
+        CIRCLES("Horizontal Circles"),
         CIRCLES2("Space Filling Circles"),
         SPIRAL("Spiral"),
         CANTOR("Cantor Lines"),
@@ -46,11 +46,9 @@ public class CurveDraw extends Application {
         }
     }
 
-
     public static void main(String[] args) {
         launch(args);
     }
-
 
     @Override
     public void start(Stage primaryStage) {

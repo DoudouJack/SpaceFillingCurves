@@ -2,6 +2,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 /**
+ * Class for Circles objects
  * @author Edouard Jacques
  * */
 
@@ -12,6 +13,10 @@ public class Circles {
     double radius;      //radius of first circle
     double xMid, yMid;  //center point (x,y) of circle
 
+
+    /**
+     * Calculates start size and position based on canvas size, draws the horizontal line and the first circle then calls the recursive method
+     */
     void drawCircle(GraphicsContext gc, Artwork artwork, int i, double hue, double scale, double opacity, int variance, double stroke) {
 
         this.gc = gc;
@@ -28,13 +33,16 @@ public class Circles {
         Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
         gc.setStroke(strColor);
         gc.setLineWidth(stroke);
-        gc.setFill(strColor);
 
         gc.strokeLine(0, yMid, artwork.getWidth()-1, yMid);
         gc.strokeOval(xMid-radius,yMid-radius,radius*2,radius*2);
         displayCircles(i-1,xMid,yMid,radius,hue,variance,opacity,gc);
 
     }
+
+    /**
+     * draws the next to circles recursively
+     */
 
     void displayCircles(int i, double xMid, double yMid, double radius, double hue, int variance, double opacity, GraphicsContext gc){
         if (i == 0) return;

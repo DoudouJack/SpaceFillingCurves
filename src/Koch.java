@@ -9,7 +9,9 @@ class Koch {
     private GraphicsContext gc;
     private double x1, y1, x5, y5;
 
-
+    /**
+     * Calculates start size and position based on canvas size, draws the first line, then calls the recursive method
+     */
     void drawKoch(GraphicsContext gc, Artwork artwork, int i, double hue, double scale, double opacity, int variance, double strokeW){
         if (i>10) { i = 10; }
 
@@ -32,6 +34,9 @@ class Koch {
 
     }
 
+    /**
+     * calculates each next point recursively then draws the lines
+     */
     void displayKochs(int i, double x1, double y1, double x5, double y5, double hue, double opacity, int variance, GraphicsContext gc){
 
         if (i > 0) {
