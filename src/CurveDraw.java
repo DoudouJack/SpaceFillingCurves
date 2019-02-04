@@ -29,11 +29,12 @@ import javafx.embed.swing.SwingFXUtils;
 public class CurveDraw extends Application {
     public enum CurveTypes {
         SIERPINSKI("Sierpinski Triangle"),
-        SPIRAL("Spiral"),
         TREE("Tree"),
-        CANTOR("Cantor Lines"),
-        CIRCLES("Circles"),
+        KOCH2("Koch Snowflake"),
         KOCH("Koch Curve"),
+        CIRCLES("Circles"),
+        SPIRAL("Spiral"),
+        CANTOR("Cantor Lines"),
         RECTCURSIVE ("Rectcursive");
         private final String curveName;
         CurveTypes(String curveName) {
@@ -102,7 +103,7 @@ public class CurveDraw extends Application {
         // input Scale
         VBox setScale = new VBox(10);
         Label labelScale = new Label("scale");
-        Slider inputScale = new Slider(0.5, 4, 1);
+        Slider inputScale = new Slider(1, 4, 1);
         inputScale.setMajorTickUnit(0.5);
         inputScale.setMinorTickCount(0);
         inputScale.setSnapToTicks(true);
@@ -270,7 +271,7 @@ public class CurveDraw extends Application {
 
         int curveType = getCurveTypeNumber( inputCurve.getValue() );
 
-        return new Curve(curveType, getIntValue(inputScale), inputStrokeWidth.getValue(), getIntValue(inputIter), inputColor.getValue(), getIntValue(inputVariance), inputOpacity.getValue() );
+        return new Curve(curveType, inputScale.getValue(), inputStrokeWidth.getValue(), getIntValue(inputIter), inputColor.getValue(), getIntValue(inputVariance), inputOpacity.getValue() );
     }
 
 
