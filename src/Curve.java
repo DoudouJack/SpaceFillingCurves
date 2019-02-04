@@ -52,17 +52,20 @@ class Curve {
             koch.drawKochSnowflake(gc, artwork, iterations, colorHue, scale, opacity, cVariance, strokeW);
         } else if (curveType == 3) {
             Koch koch = new Koch();
-            koch.drawKoch(gc, artwork, iterations, colorHue, scale, opacity, cVariance);
+            koch.drawKoch(gc, artwork, iterations, colorHue, scale, opacity, cVariance, strokeW);
         } else if (curveType == 4) {
             Circles circle = new Circles();
             circle.drawCircle(gc, artwork, iterations, colorHue, scale, opacity, cVariance, strokeW);
-        } else if (curveType == 5) {
+        }else if (curveType == 5) {
+                Circles2 circle = new Circles2();
+                circle.drawCircle(gc, artwork, iterations, colorHue, scale, opacity, cVariance, strokeW);
+        } else if (curveType == 6) {
             Spiral spiral = new Spiral();
             spiral.drawSpiral(gc, 300 * scale, colorHue, cVariance, opacity, iterations, strokeW);
-        } else if (curveType == 6) {
+        } else if (curveType == 7) {
             Cantor cantor = new Cantor();
             cantor.drawCantor(gc, artwork, iterations, colorHue, opacity, scale, cVariance, strokeW);
-        } else if (curveType == 7) {
+        } else if (curveType == 8) {
             Rectcursive rect = new Rectcursive();
             rect.drawRect(gc, colorHue, opacity, cVariance, iterations, 0, 0, 800, 800, scale);
         }

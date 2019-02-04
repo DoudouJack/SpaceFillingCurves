@@ -32,11 +32,11 @@ public class Circles {
 
         gc.strokeLine(0, yMid, artwork.getWidth()-1, yMid);
         gc.strokeOval(xMid-radius,yMid-radius,radius*2,radius*2);
-        displayCircles(i-1,xMid,yMid,radius,hue,variance,opacity);
+        displayCircles(i-1,xMid,yMid,radius,hue,variance,opacity,gc);
 
     }
 
-    void displayCircles(int i, double xMid, double yMid, double radius, double hue, int variance, double opacity){
+    void displayCircles(int i, double xMid, double yMid, double radius, double hue, int variance, double opacity, GraphicsContext gc){
         if (i == 0) return;
 
         //used to position left and right circles
@@ -57,8 +57,8 @@ public class Circles {
         gc.strokeOval(xRight - radius / 2, yRight - radius / 2, radius, radius);
 
 
-        displayCircles(i - 1, xLeft, yLeft, radius / 2, newColor, variance, opacity);
-        displayCircles(i - 1, xRight, yRight, radius / 2, newColor, variance, opacity);
+        displayCircles(i - 1, xLeft, yLeft, radius / 2, newColor, variance, opacity, gc);
+        displayCircles(i - 1, xRight, yRight, radius / 2, newColor, variance, opacity, gc);
     }
 
 }

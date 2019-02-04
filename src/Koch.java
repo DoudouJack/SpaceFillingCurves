@@ -10,13 +10,13 @@ class Koch {
     private double x1, y1, x5, y5;
 
 
-    void drawKoch(GraphicsContext gc, Artwork artwork, int i, double hue, double scale, double opacity, int variance){
+    void drawKoch(GraphicsContext gc, Artwork artwork, int i, double hue, double scale, double opacity, int variance, double strokeW){
         if (i>10) { i = 10; }
 
         this.gc = gc;
         Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
         gc.setStroke(strColor);
-        gc.setLineWidth(3);
+        gc.setLineWidth(strokeW);
         gc.setFill(strColor);
 
         x1 = 10;

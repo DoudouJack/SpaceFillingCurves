@@ -33,6 +33,7 @@ public class CurveDraw extends Application {
         KOCH2("Koch Snowflake"),
         KOCH("Koch Curve"),
         CIRCLES("Circles"),
+        CIRCLES2("Space Filling Circles"),
         SPIRAL("Spiral"),
         CANTOR("Cantor Lines"),
         RECTCURSIVE ("Rectcursive");
@@ -103,7 +104,7 @@ public class CurveDraw extends Application {
         // input Scale
         VBox setScale = new VBox(10);
         Label labelScale = new Label("scale");
-        Slider inputScale = new Slider(1, 4, 1);
+        Slider inputScale = new Slider(0.5, 4, 1);
         inputScale.setMajorTickUnit(0.5);
         inputScale.setMinorTickCount(0);
         inputScale.setSnapToTicks(true);
@@ -113,7 +114,7 @@ public class CurveDraw extends Application {
         // input iterations
         VBox setIter = new VBox(10);
         Label labelIter = new Label("iterations");
-        Slider inputIter = new Slider(1, 15, 7);
+        Slider inputIter = new Slider(1, 15, 5);
         inputIter.setShowTickLabels(true);
         inputIter.setShowTickMarks(true);
         inputIter.setMajorTickUnit(15);
