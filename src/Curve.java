@@ -1,4 +1,5 @@
 import javafx.scene.canvas.GraphicsContext;
+import org.w3c.dom.css.Rect;
 
 /**
  * This class is designed to handle parameters received from the GUI and then apply the correct drawing functions for the fractals.
@@ -65,9 +66,13 @@ class Curve {
         } else if (curveType == 7) {
             Cantor cantor = new Cantor();
             cantor.drawCantor(gc, artwork, iterations, colorHue, opacity, scale, cVariance, strokeW);
-        } else if (curveType == 8) {
+        }else if (curveType == 8) {
+            Squares rect = new Squares();
+            rect.drawSquares(gc, artwork, iterations, colorHue, scale, opacity,cVariance, strokeW);
+        } else if (curveType == 9) {
             Rectcursive rect = new Rectcursive();
             rect.drawRect(gc, colorHue, opacity, cVariance, iterations, 0, 0, 800, 800, scale);
         }
+
     }
 }

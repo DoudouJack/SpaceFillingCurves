@@ -36,6 +36,7 @@ public class CurveDraw extends Application {
         CIRCLES2("Space Filling Circles"),
         SPIRAL("Spiral"),
         CANTOR("Cantor Lines"),
+        SQUARES ("Space Filling Squares"),
         RECTCURSIVE ("Rectcursive");
         private final String curveName;
         CurveTypes(String curveName) {
