@@ -34,11 +34,6 @@ class Curve {
     void printValues() {
         System.out.printf("Type: %d \nScale: %f \nStroke: %f \nIterations: %d \nColorHue: %f \nColor Variance: %d \nOpacity: %f \n", curveType, scale, strokeW, iterations, colorHue, cVariance, opacity);
     }
-    // BITTE KEINE XPOS UND YPOS BENUTZEN DA DIE FUNKTIONEN DRAW SELBER CHECKEN, DASS DAS OBJEKT IN DER MITTE
-    // SO GROSS WIE MOGLICH GEZEICHNET WIRD!
-    // write a function that triggers the draw function depending on curveType (int)
-    // depending on the choice, create new object from selected type
-    // then draw
 
     /**
      * Creates a new object and calls its draw method depending on the item in the GUI's drop-down menu that was selected.
