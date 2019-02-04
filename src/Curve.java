@@ -52,7 +52,7 @@ class Curve {
             koch.drawKochSnowflake(gc, artwork, iterations, colorHue, scale, opacity, cVariance, strokeW);
         } else if (curveType == 3) {
             Koch koch = new Koch();
-            koch.drawKoch(gc, artwork, iterations, colorHue, scale, opacity, cVariance);
+            koch.drawKoch(gc, artwork, iterations, colorHue, scale, opacity, cVariance, strokeW);
         } else if (curveType == 4) {
             Circles circle = new Circles();
             circle.drawCircle(gc, artwork, iterations, colorHue, scale, opacity, cVariance, strokeW);
