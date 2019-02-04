@@ -112,11 +112,12 @@ public class CurveDraw extends Application {
         // input iterations
         VBox setIter = new VBox(10);
         Label labelIter = new Label("iterations");
-        Slider inputIter = new Slider(1, 15, 10);
+        Slider inputIter = new Slider(1, 15, 7);
         inputIter.setShowTickLabels(true);
         inputIter.setShowTickMarks(true);
-        inputIter.setMajorTickUnit(200);
-        inputIter.setMinorTickCount(1);
+        inputIter.setMajorTickUnit(15);
+        inputIter.setMinorTickCount(15);
+        inputIter.setSnapToTicks(true);
         setIter.getChildren().addAll(labelIter, inputIter);
 
         // input color
