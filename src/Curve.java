@@ -72,6 +72,9 @@ class Curve {
         } else if (curveType == 9) {
             Rectcursive rect = new Rectcursive();
             rect.drawRect(gc, colorHue, opacity, cVariance, iterations, 0, 0, 800, 800, scale);
+        } else if (curveType == 10){
+            DragonCurve dragon = new DragonCurve(gc, artwork, iterations, colorHue, scale, opacity, cVariance, strokeW);
+
         }
 
     }

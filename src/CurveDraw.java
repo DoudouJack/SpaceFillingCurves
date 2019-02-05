@@ -37,7 +37,8 @@ public class CurveDraw extends Application {
         SPIRAL("Spiral"),
         CANTOR("Cantor Lines"),
         SQUARES ("Space Filling Squares"),
-        RECTCURSIVE ("Rectcursive");
+        RECTCURSIVE ("Rectcursive"),
+        DRAGON ("Dragon Curve");
         private final String curveName;
         CurveTypes(String curveName) {
             this.curveName = curveName;
