@@ -2,6 +2,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 /**
+ * Class that draws a tree from the bottom center point of the canvas.
  * @author Julia Filzinger, Fee Di Mascio, Edouard Jacques
  */
 

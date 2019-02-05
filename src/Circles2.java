@@ -2,6 +2,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 /**
+ * Class to draw circles that fill up the space.
  * @author Julia Filzinger
  * */
 
@@ -56,5 +57,4 @@ public class Circles2 {
         displayCircles(i-1, newX2, newY3, radius/2.0, hue+(3*variance), variance, opacity);
         displayCircles(i-1, newX3, newY2, radius/2.0, hue+(4*variance), variance, opacity);
     }
-
 }

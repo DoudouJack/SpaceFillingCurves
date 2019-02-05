@@ -2,6 +2,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 /**
+ * Class to draw squares that fill up the space.
  * @author Julia Filzinger
  * */
 
@@ -56,5 +57,4 @@ public class Squares {
         displaySquares(i-1, newX2, newY3, size/2.0, hue+(3*variance), variance, opacity);
         displaySquares(i-1, newX3, newY2, size/2.0, hue+(4*variance), variance, opacity);
     }
-
 }

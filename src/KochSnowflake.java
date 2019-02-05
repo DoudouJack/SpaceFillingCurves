@@ -2,7 +2,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 /**
- * @author Julia Filzinger, Edouard Jacques
+ * Class to draw a Koch snowflake. Subclass of Koch.
+ * @author Julia Filzinger
  *
  */
 
