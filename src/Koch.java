@@ -21,9 +21,10 @@ class Koch {
         gc.setLineWidth(strokeW);
         gc.setFill(strColor);
 
-        x1 = 10;
-        y1 = artwork.getHeight()/3.0*2.0;
-        x5 = artwork.getWidth() - 10;
+        scale = (artwork.getWidth()/2.0)-(scale*500.0);
+        x1 = scale;
+        y1 = artwork.getHeight()/3.0*2.0  -scale/2;
+        x5 = artwork.getWidth() - scale;
         y5 = y1;
 
         if (i == 1){
