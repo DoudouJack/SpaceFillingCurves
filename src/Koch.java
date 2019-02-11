@@ -30,7 +30,7 @@ class Koch {
         if (i == 1){
             gc.strokeLine(x1, y1, x5, y5);
         } else {
-            displayKochs(i, x1, y1, x5, y5, hue, opacity, variance, gc);
+            displayKochs(i-1, x1, y1, x5, y5, hue, opacity, variance, gc);
         }
 
     }

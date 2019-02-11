@@ -1,3 +1,4 @@
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 /**
@@ -12,6 +13,7 @@ public class Easel extends  StackPane {
         Artwork newArtwork = new Artwork();
         this.getChildren().add( newArtwork );
         this.artwork = newArtwork;
+        this.setAlignment(Pos.CENTER);
     }
 
     public void setArtwork( Artwork newArtwork ){

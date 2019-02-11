@@ -13,7 +13,7 @@ class KochSnowflake extends Koch{
 
 
     void drawKochSnowflake(GraphicsContext gc, Artwork artwork, int i, double hue, double scale, double opacity, int variance, double strokeW){
-        if (i>10) { i = 10; }
+        if (i>11) { i = 11; }
 
         this.gc = gc;
         Color strColor = Color.hsb(hue,1.0,1.0, opacity/100);
@@ -34,9 +34,9 @@ class KochSnowflake extends Koch{
             gc.strokeLine(x1, y1, x3, y3);
             gc.strokeLine(x3, y3, x5, y1);
         } else {
-            displayKochs(i, x1, y1, x5, y1, hue, opacity, variance, gc);
-            displayKochs(i, x3, y3, x1, y1, hue, opacity, variance, gc);
-            displayKochs(i, x5, y1, x3, y3, hue, opacity, variance, gc);
+            displayKochs(i-1, x1, y1, x5, y1, hue, opacity, variance, gc);
+            displayKochs(i-1, x3, y3, x1, y1, hue, opacity, variance, gc);
+            displayKochs(i-1, x5, y1, x3, y3, hue, opacity, variance, gc);
         }
 
     }

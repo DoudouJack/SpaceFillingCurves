@@ -23,6 +23,13 @@ public class PopUpNew {
         window.setTitle("Create a new artwork");
         window.setMinWidth(100);
         window.setMaxWidth(300);
+        window.setMaxHeight(800);
+
+        // prevent window from going into fullscreen
+        window.maximizedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue)
+                window.setMaximized(false);
+        });
 
         Label labelWidth = new Label("Width");
         Label labelHeight = new Label("Height");

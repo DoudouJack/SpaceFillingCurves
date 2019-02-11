@@ -13,6 +13,18 @@ public class Circles2 {
     double radius;
     double x, y;
 
+    /**
+     * Draws the first circle, size depending on scale.
+     * @param gc GraphicsContext to draw in.
+     * @param artwork current artwork to draw on.
+     * @param i number of iterations from GUI
+     * @param hue color hue from GUI
+     * @param scale scale factor from GUI
+     * @param opacity opacity from GUI
+     * @param variance color variance from GUI.
+     * @param stroke  stroke width from GUI.
+     */
+
     void drawCircle(GraphicsContext gc, Artwork artwork, int i, double hue, double scale, double opacity, int variance, double stroke) {
         scale = artwork.getWidth()/2.0 - (scale*100);
 
@@ -29,6 +41,17 @@ public class Circles2 {
         gc.strokeOval(x, y, radius*2, radius*2);
         displayCircles(i-1, x, y, radius/2.0, hue+variance, variance, opacity);
     }
+
+    /**
+     * Shows more circles calling itself recursively depending on the number of iterations (left).
+     * @param i current iteration.
+     * @param x last x coordinate of top left point.
+     * @param y last y coordinate of top left point.
+     * @param radius radius for this iteration's circles.
+     * @param hue calculated new color hue.
+     * @param variance color variance from GUI.
+     * @param opacity opacity from GUI.
+     */
 
     void displayCircles(int i, double x, double y, double radius, double hue, int variance, double opacity){
         if (i == 0) return;
@@ -53,8 +76,8 @@ public class Circles2 {
         gc.strokeOval(newX3, newY2, d, d);
 
         displayCircles(i-1, newX2, newY1, radius/2.0, hue+variance, variance, opacity);
-        displayCircles(i-1, newX1, newY2, radius/2.0, hue+(2*variance), variance, opacity);
-        displayCircles(i-1, newX2, newY3, radius/2.0, hue+(3*variance), variance, opacity);
-        displayCircles(i-1, newX3, newY2, radius/2.0, hue+(4*variance), variance, opacity);
+        displayCircles(i-1, newX1, newY2, radius/2.0, hue+(1*variance), variance, opacity);
+        displayCircles(i-1, newX2, newY3, radius/2.0, hue+(1*variance), variance, opacity);
+        displayCircles(i-1, newX3, newY2, radius/2.0, hue+(1*variance), variance, opacity);
     }
 }

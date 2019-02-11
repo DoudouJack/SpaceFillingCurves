@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.WritableImage;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -27,6 +28,12 @@ import javafx.embed.swing.SwingFXUtils;
  */
 
 public class CurveDraw extends Application {
+
+    /**
+     * This enum holds the curve type and the names that are displayed in the GUI.
+     * The method getCurveTypeNumber will find the curve type number (int) by counting through the enum.
+     */
+
     public enum CurveTypes {
         SIERPINSKI("Sierpinski Triangle"),
         TREE("Tree"),
@@ -54,13 +61,9 @@ public class CurveDraw extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
-        // S E T U P   W I N D O W + L A Y O U T
-        BorderPane layout = new BorderPane();
-        Stage window;
-        window = primaryStage;
-        window.setTitle("CurveDraw");
-        window.getIcons().add(new Image( CurveDraw.class.getResourceAsStream("/resources/icons/appIcon.png")) );
+        /**
+         * This function first builds the GUI from input elements, layout elements, tooltips. It then creates and shows the window.
+         */
 
         // B U I L D   C O N T R O L S
         VBox topBtns = new VBox(0);
@@ -98,13 +101,13 @@ public class CurveDraw extends Application {
         for(CurveTypes ct : CurveTypes.values()) {
             inputCurve.getItems().add( ct.getCurveName() );
         }
-        inputCurve.getSelectionModel().select(0);
+        inputCurve.getSelectionModel().select(2);
         setCurve.getChildren().addAll(labelCurve, inputCurve);
 
         // input Scale
         VBox setScale = new VBox(10);
         Label labelScale = new Label("scale");
-        Slider inputScale = new Slider(0.5, 4, 1);
+        Slider inputScale = new Slider(0.5, 4, 2);
         inputScale.setMajorTickUnit(0.5);
         inputScale.setMinorTickCount(0);
         inputScale.setSnapToTicks(true);
@@ -114,7 +117,7 @@ public class CurveDraw extends Application {
         // input iterations
         VBox setIter = new VBox(10);
         Label labelIter = new Label("iterations");
-        Slider inputIter = new Slider(1, 15, 5);
+        Slider inputIter = new Slider(1, 15, 1);
         inputIter.setShowTickLabels(true);
         inputIter.setShowTickMarks(true);
         inputIter.setMajorTickUnit(15);
@@ -135,14 +138,14 @@ public class CurveDraw extends Application {
         // input color variance
         VBox setVariance = new VBox(10);
         Label labelVariance = new Label("color variance");
-        Slider cVariance = new Slider(0, 40, 20);
+        Slider cVariance = new Slider(0, 40, 0);
         cVariance.setMajorTickUnit(5);
         setVariance.getChildren().addAll(labelVariance, cVariance);
 
         // input opacity
         VBox setOpacity = new VBox(10);
         Label labelOpacity = new Label("opacity");
-        Slider inputOpacity = new Slider(1, 100, 50);
+        Slider inputOpacity = new Slider(1, 100, 100);
         inputOpacity.setShowTickLabels(true);
         inputOpacity.setShowTickMarks(true);
         inputOpacity.setMajorTickUnit(100);
@@ -171,6 +174,16 @@ public class CurveDraw extends Application {
         Tooltip tooltipClear = new Tooltip("Delete the artwork.");
         btnClear.setTooltip(tooltipClear);
 
+        // S E T U P   W I N D O W + L A Y O U T
+        HBox layout = new HBox();
+        Stage window;
+        window = primaryStage;
+        window.setTitle("CurveDraw");
+        window.getIcons().add(new Image( CurveDraw.class.getResourceAsStream("/resources/icons/appIcon.png")) );
+        primaryStage.maximizedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue)
+                primaryStage.setMaximized(false);
+        });
 
         // C R E A T E  L A Y O U T
         VBox controls = new VBox(20);
@@ -184,8 +197,7 @@ public class CurveDraw extends Application {
         easel.setMinWidth(800);
         easel.setMinHeight(800);
 
-        layout.setRight(easel);
-        layout.setLeft(controls);
+        layout.getChildren().addAll(controls, easel);
 
         Scene scene = new Scene(layout);
         scene.getStylesheets().add("resources/Style.css");
@@ -194,7 +206,9 @@ public class CurveDraw extends Application {
         window = primaryStage;
         window.show();
 
-
+        /**
+         * GUI functionality is implemented here, using lambdas.
+         */
         // G U I   F U N C T I O N S
         btnStart.setOnAction( e -> {
                 Curve curve = getValues( inputCurve, inputScale, inputStrokeWidth, inputIter, inputColor,  cVariance, inputOpacity);
@@ -220,6 +234,10 @@ public class CurveDraw extends Application {
         btnNewCustom.setOnAction( e -> PopUpNew.open(easel));
 
         // READ FROM FILE
+        /**
+         * This function opens a file chooser to select a file that will be read in.
+         * @see readFromFile()
+         */
         btnFromFile.setOnAction( e -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("open resource file");
@@ -239,6 +257,9 @@ public class CurveDraw extends Application {
             }
         });
 
+        /**
+         * This function opens a file chooser to select were to save the current artwork to. It allows to choose between png and jpeg format.
+         */
     // SAVE TO FILE
         btnSaveFile.setOnAction( e -> {
             FileChooser fileChooser = new FileChooser();
@@ -268,6 +289,10 @@ public class CurveDraw extends Application {
 
     }
 
+    /**
+     * On pressing "start drawing" this function gets the values from all GUI elements and returns a Curve object with those values.
+     */
+
     private Curve getValues( ChoiceBox<String> inputCurve, Slider inputScale, Slider inputStrokeWidth, Slider inputIter, Slider inputColor, Slider inputVariance, Slider inputOpacity){
 
         int curveType = getCurveTypeNumber( inputCurve.getValue() );
@@ -275,7 +300,9 @@ public class CurveDraw extends Application {
         return new Curve(curveType, inputScale.getValue(), inputStrokeWidth.getValue(), getIntValue(inputIter), inputColor.getValue(), getIntValue(inputVariance), inputOpacity.getValue() );
     }
 
-
+    /**
+     * On pressing "start drawing". the curve type number (int) will be found by counting through the enum.
+     */
     private int getCurveTypeNumber( String typeName ){
         int typeNumber = 0;
 
@@ -288,7 +315,9 @@ public class CurveDraw extends Application {
 
         return typeNumber;
     }
-
+    /**
+     * This function gets a slider and returns its value as an integer.
+     */
     private int getIntValue( Slider slider ){
         return (int) Math.round( slider.getValue() );
     }
