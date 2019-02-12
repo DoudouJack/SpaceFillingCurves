@@ -11,7 +11,6 @@ class KochSnowflake extends Koch{
     private GraphicsContext gc;
     private double x1, y1, x5, x3, y3, h;
 
-
     void drawKochSnowflake(GraphicsContext gc, Artwork artwork, int i, double hue, double scale, double opacity, int variance, double strokeW){
         if (i>11) { i = 11; }
 

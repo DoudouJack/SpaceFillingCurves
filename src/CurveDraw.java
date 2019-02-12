@@ -107,7 +107,7 @@ public class CurveDraw extends Application {
         // input Scale
         VBox setScale = new VBox(10);
         Label labelScale = new Label("scale");
-        Slider inputScale = new Slider(0.5, 4, 2);
+        Slider inputScale = new Slider(0.5, 4, 1);
         inputScale.setMajorTickUnit(0.5);
         inputScale.setMinorTickCount(0);
         inputScale.setSnapToTicks(true);
@@ -117,7 +117,7 @@ public class CurveDraw extends Application {
         // input iterations
         VBox setIter = new VBox(10);
         Label labelIter = new Label("iterations");
-        Slider inputIter = new Slider(1, 15, 1);
+        Slider inputIter = new Slider(1, 15, 6);
         inputIter.setShowTickLabels(true);
         inputIter.setShowTickMarks(true);
         inputIter.setMajorTickUnit(15);
@@ -138,14 +138,14 @@ public class CurveDraw extends Application {
         // input color variance
         VBox setVariance = new VBox(10);
         Label labelVariance = new Label("color variance");
-        Slider cVariance = new Slider(0, 40, 0);
+        Slider cVariance = new Slider(0, 40, 20);
         cVariance.setMajorTickUnit(5);
         setVariance.getChildren().addAll(labelVariance, cVariance);
 
         // input opacity
         VBox setOpacity = new VBox(10);
         Label labelOpacity = new Label("opacity");
-        Slider inputOpacity = new Slider(1, 100, 100);
+        Slider inputOpacity = new Slider(1, 100, 50);
         inputOpacity.setShowTickLabels(true);
         inputOpacity.setShowTickMarks(true);
         inputOpacity.setMajorTickUnit(100);

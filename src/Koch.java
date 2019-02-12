@@ -64,7 +64,6 @@ class Koch {
             displayKochs(i - 1, x3, y3, x4, y4, hue+(3*variance), opacity, variance, gc);
             displayKochs(i - 1, x4, y4, x5, y5, hue+(4*variance), opacity, variance, gc);
 
-
         } else {
             gc.strokeLine(x1,y1,x5,y5);
         }

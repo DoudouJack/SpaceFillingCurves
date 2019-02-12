@@ -76,8 +76,8 @@ public class Circles2 {
         gc.strokeOval(newX3, newY2, d, d);
 
         displayCircles(i-1, newX2, newY1, radius/2.0, hue+variance, variance, opacity);
-        displayCircles(i-1, newX1, newY2, radius/2.0, hue+(1*variance), variance, opacity);
-        displayCircles(i-1, newX2, newY3, radius/2.0, hue+(1*variance), variance, opacity);
-        displayCircles(i-1, newX3, newY2, radius/2.0, hue+(1*variance), variance, opacity);
+        displayCircles(i-1, newX1, newY2, radius/2.0, hue+(variance), variance, opacity);
+        displayCircles(i-1, newX2, newY3, radius/2.0, hue+(variance), variance, opacity);
+        displayCircles(i-1, newX3, newY2, radius/2.0, hue+(variance), variance, opacity);
     }
 }
